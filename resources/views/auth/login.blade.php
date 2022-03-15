@@ -2,6 +2,7 @@
 @push('css')
     <link rel="stylesheet" href="{{ asset('css/login.css') }}">
 @endpush
+@section('content')
 <div class="container-fluid">
     <div class="image">
         <img src="{{ asset('img/logo.jpg') }}" alt="cgp_logo" class="logo-image">
@@ -20,3 +21,4 @@
         </form>
     </div>
 </div>
+@endsection

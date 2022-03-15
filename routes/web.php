@@ -18,7 +18,7 @@ Route::get('/', function () {
 });
 
 Route::get('/user',function(){
-    return view('common.user.header');
+    return view('user.balance');
 });
 
 
