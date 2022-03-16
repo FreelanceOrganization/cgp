@@ -1,34 +1,12 @@
 @extends('layouts.main')
 @include('common.user.header')
-<style>
-    .content{
-        background: #5CD225;
-        color:white;
-        text-align: center;
-    }
-
-    .text-center{
-        padding-top: 15px;
-        padding-bottom: 7px;
-        border-bottom: 2px solid dimgray;
-        width: 100%;
-        display: block;
-    }
-    .text-balance {
-        margin-top: 1rem !important;
-        margin-bottom: 0rem !important;
-    }
-    h2{
-        padding-bottom: 15px;
-    }
-    span{
-        font-size: 15px;
-    }
-</style>
+@push('css')
+    <link rel="stylesheet" href="{{ asset('css/balance.css') }}">
+@endpush
 @section('content')
     <div class="content">
         <div class="row">
-            <div class="col text-center">
+            <div class="col text-center balance">
                 Balance
             </div>
             <div class="col text-center">
@@ -45,13 +23,92 @@
             <div class="col">
                 <p>Recent Transactions</p>
             </div>
-            <div class="col">
+            <div class="col right">
                 <h4>+</h4>
             </div>
         </div>
     </div>
-    <div class="history">
-
+</div>
+<div class="history">
+    <div class="row first-row">
+        <div class="col left">
+            <h5 class="add">₱ +500.00</h5>
+        </div>
+        <div class="col right">
+           <p> April 06 <br> <span><a href="#" class="details">View Details</a></span></p>
+        </div>
+    </div>
+      <div class="row second-row">
+        <div class="col left">
+           <h5 class="minus"> ₱ -200.00</h5>
+        </div>
+        <div class="col right">
+            <p> April 01 <br> <span><a href="#" class="details">View Details</a></span></p>
+        </div>
+    </div>
+    <div class="row first-row">
+        <div class="col left">
+            <h5 class="add">₱ +500.00</h5>
+        </div>
+        <div class="col right">
+           <p> April 06 <br> <span><a href="#" class="details">View Details</a></span></p>
+        </div>
+    </div>
+      <div class="row second-row">
+        <div class="col left">
+           <h5 class="minus"> ₱ -200.00</h5>
+        </div>
+        <div class="col right">
+            <p> April 01 <br> <span><a href="#" class="details">View Details</a></span></p>
+        </div>
+    </div>
+    <div class="row first-row">
+        <div class="col left">
+            <h5 class="add">₱ +500.00</h5>
+        </div>
+        <div class="col right">
+           <p> April 06 <br> <span><a href="#" class="details">View Details</a></span></p>
+        </div>
+    </div>
+      <div class="row second-row">
+        <div class="col left">
+           <h5 class="minus"> ₱ -200.00</h5>
+        </div>
+        <div class="col right">
+            <p> April 01 <br> <span><a href="#" class="details">View Details</a></span></p>
+        </div>
+    </div>
+    <div class="row first-row">
+        <div class="col left">
+            <h5 class="add">₱ +500.00</h5>
+        </div>
+        <div class="col right">
+           <p> April 06 <br> <span><a href="#" class="details">View Details</a></span></p>
+        </div>
+    </div>
+      <div class="row second-row">
+        <div class="col left">
+           <h5 class="minus"> ₱ -200.00</h5>
+        </div>
+        <div class="col right">
+            <p> April 01 <br> <span><a href="#" class="details">View Details</a></span></p>
+        </div>
+    </div>
+    <div class="row first-row">
+        <div class="col left">
+            <h5 class="add">₱ +500.00</h5>
+        </div>
+        <div class="col right">
+           <p> April 06 <br> <span><a href="#" class="details">View Details</a></span></p>
+        </div>
+    </div>
+      <div class="row second-row">
+        <div class="col left">
+           <h5 class="minus"> ₱ -200.00</h5>
+        </div>
+        <div class="col right">
+            <p> April 01 <br> <span><a href="#" class="details">View Details</a></span></p>
+        </div>
     </div>
 </div>
 @endsection
