@@ -28,16 +28,25 @@ h2{
 span{
     font-size: 15px;
 }
+
+.history {
+    width: 100vw;
+}
+
 .history .row{
     padding-bottom: 0px !important;
-    padding: 15px;
+    padding: 15px 0px;
 }
+
 .history .first-row{
     background: #5cd22561;
+    /* width: 100%; */
 }
 .history .second-row{
     background: #f4cf4772;
+    /* width: 100%; */
 }
+
 .history .add{
     margin-top: 8px;
     color: #0149AB;
@@ -50,18 +59,35 @@ span{
 
 .right{
     text-align: end;
+    margin-top: 5px;
 }
+
 .history .details{
     text-decoration: none;
     font-size: 10px;
 }
+
+.trans-cont {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    height: 80px;
+    align-content: center;
+    padding: 0px 12px;
+}
+
 .transaction p{
     font-weight: 500;
 }
-.transaction h4{
-    text-align: center;
+.transaction #plus{
     background: #C4C4C4;
-    border-radius: 50%;
-    margin-left: 130px;
-    font-weight: 900;
+    float: right;
+    width: 28px;
+    height: 29px;
+    text-align: center;
+    border-radius: 20px;
+}
+
+.format-text {
+    height: 100%;
+    margin-top: 18px;
 }
