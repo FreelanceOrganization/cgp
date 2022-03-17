@@ -21,9 +21,9 @@
     </div>
     <div class="transaction">
         <div class="container">
-            <div class="trans-cont">
+            <div class="trans-cont" style="height: 35px;">
                 <div>
-                    <p>Recent Transactions</p>
+                    <p style="margin-top: 3.7px">Recent Transactions</p>
                 </div>
                 <div class="col right">
                     <div id="plus">

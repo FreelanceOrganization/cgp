@@ -1,51 +1,8 @@
 @extends('layouts.main')
-<style>
-    .header-container{
-        background: #0149AB;
-        padding: 10 0px;
-        box-shadow: 2px 2px 2px dimgrey;
-    }
-    .burgerMenu {
-        width: 35px;
-        height: 5px;
-        background-color: #fff;
-        margin: 6px 0;
-        border-radius: 5px;
-    }
-    .name{
-        font-size: 13px;
-        margin-left: -53px;
-        color: white;
-        text-align: center;
-    }
-    .profile{
-        background: #fff;
-        border-radius: 100%;
-        padding: 20px;
-        width: 2em;
-        height: 2em;
-        /* margin-left: -15px;
-        margin-right: 15px; */
-    }
-
-    #profile-and-name {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        align-items: center;
-    }
-    #burger-cont {
-        display: flex;
-        align-items: center;
-        justify-content: flex-start;
-    }
-
-    #profile-cont {
-        display: flex;
-        align-self: center;
-        justify-content: flex-end;
-    }
-
-</style>
+@push('css')
+<link rel="stylesheet" href="{{ asset('css/common/header.css') }}">
+<link rel="stylesheet" href="{{ asset('css/common/sidebar.css') }}">
+@endpush
 <header>
     <div class="header-container">
         <div class="container">
@@ -69,3 +26,18 @@
         </div>
     </div>
 </header>
+
+{{-- side bar --}}
+
+<div class="sidebar-wrapper">
+    <div class="container" id="sub-header-info">
+        <div class="sub-header-divider">
+            <div id="sub-header-logo">
+                <img id="logo-image" src="{{ asset('img/logo.jpg') }}" alt="">
+            </div>
+            <div id="sub-header-name">
+                <span id="sub-header-text">CGP Trading & Marketing</span>
+            </div>
+        </div>
+    </div>
+</div>
