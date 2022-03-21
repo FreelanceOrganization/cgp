@@ -33,7 +33,7 @@
 </header>
 
 {{-- sidebar --}}
-<div class="sidebar-wrapper">
+<div id="sidebar-wrapper">
     <div id="sub-header-info">
         {{-- sub header info --}}
         <div class="sub-header-divider">

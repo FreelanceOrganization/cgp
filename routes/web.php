@@ -21,4 +21,6 @@ Route::get('/user',function(){
     return view('user.balance');
 });
 
-
+Route::get('/details',function(){
+    return view('user.view-details');
+});
