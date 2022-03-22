@@ -25,7 +25,25 @@ Route::get('/details',function(){
     return view('user.view-details');
 });
 
+Route::prefix('admin')->group(function(){
+    Route::get('/testing',function(){
+        return view('admin.pages.dashboard');
+    })->name('admin.dashboard');
 
-Route::get('/testing',function(){
-    return view('admin.pages.dashboard');
-})->name('admin.dashboard');
+    Route::get('/customer/savings',function(){
+        return view('admin.pages.savings.index');
+    })->name('admin.customer.savings');
+
+    Route::get('/customer/savings/new',function(){
+        return view('admin.pages.savings.form');
+    })->name('admin.customer.newsavings');
+
+    Route::get('/customer/credits',function(){
+        return view('admin.pages.credits.index');
+    })->name('admin.customer.credits');
+
+    Route::get('/customer/credits/new',function(){
+        return view('admin.pages.credits.form');
+    })->name('admin.customer.newcredits');
+
+});

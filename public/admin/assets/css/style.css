@@ -14448,6 +14448,6 @@ dl {
   flex-grow: 1; }
 
 /*# sourceMappingURL=style.css.map */
-.sidebar .nav .nav-item.active > .nav-link i, .sidebar .nav .nav-item.active > .nav-link .menu-title {
+.sidebar .nav .nav-item.active > .nav-link i, .sidebar .nav .nav-item.active > .nav-link .menu-title, .sidebar .nav.sub-menu .nav-item .nav-link.active {
     color: #4fd4c3 !important;
 }

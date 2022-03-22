@@ -29,6 +29,7 @@
         <!-- views/common/admin/sidebar -->
         @include('common.admin.sidebar')
         <!-- partial -->
+        <div class="main-panel">
         @yield('main-content')
           <!-- content-wrapper ends -->
           <!-- views/common/admin/footer -->
