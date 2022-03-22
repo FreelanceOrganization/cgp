@@ -24,3 +24,8 @@ Route::get('/user',function(){
 Route::get('/details',function(){
     return view('user.view-details');
 });
+
+
+Route::get('/testing',function(){
+    return view('admin.pages.dashboard');
+})->name('admin.dashboard');
