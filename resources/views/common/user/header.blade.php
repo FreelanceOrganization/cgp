@@ -1,48 +1,68 @@
 @extends('layouts.main')
-<style>
-    .header-container{
-        background: #0149AB;
-        padding: 10px;
-        padding-left: 15px;
-        box-shadow: 2px 2px 2px dimgrey;
-    }
-    .burgerMenu {
-        width: 35px;
-        height: 5px;
-        background-color: #fff;
-        margin: 6px 0;
-        border-radius: 5px;
-    }
-    .name{
-        font-size: 13px;
-        margin-left: -20px;
-        color: white;
-        text-align: center;
-        margin-top: 10px;
-    }
-    .profile{
-        background: #fff;
-        border-radius: 100%;
-        padding: 20px;
-        margin-left: -15px;
-        margin-right: 15px;
-    }
-</style>
+@push('css')
+<link rel="stylesheet" href="{{ asset('css/common/header.css') }}">
+<link rel="stylesheet" href="{{ asset('css/common/sidebar.css') }}">
+@endpush
+@section('js')
+    <script src="{{ asset('js/main.js') }}"></script>
+@endsection
+
+{{-- header --}}
 <header>
-    <div class="container header-container">
-        <div class="row">
-            <div class="col-8">
-                <div class="burgerMenu"></div>
-                <div class="burgerMenu"></div>
-                <div class="burgerMenu"></div>
-            </div>
-            <div class="col-2">
-                <p class="name">John Doe</p>
-            </div>
-            <div class="col-2">
-                <div class="profile">
+    <div class="header-container">
+        <div class="container">
+            <div class="row">
+                <div class="col-9" id="burger-cont">
+                    <div id="burger-inner-cont">
+                        <div class="burgerMenu"></div>
+                        <div class="burgerMenu"></div>
+                        <div class="burgerMenu"></div>
+                    </div>
+                </div>
+                <div class="col-3" id="profile-cont">
+                    <div id="profile-and-name">
+                        <div style="height: 53%;">
+                            <p class="name">John Doe</p>
+                        </div>
+                        <div class="profile"></div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 </header>
+
+{{-- sidebar --}}
+<div id="sidebar-wrapper">
+    <div id="sub-header-info">
+        {{-- sub header info --}}
+        <div class="sub-header-divider">
+            <div id="sub-header-logo">
+                <img id="logo-image" src="{{ asset('img/logo.jpg') }}" alt="">
+            </div>
+            <div id="sub-header-name">
+                <span id="sub-header-text">CGP Trading & Marketing</span>
+            </div>
+        </div>
+        {{-- sub header profile info --}}
+        <div id="sub-header-profile-info">
+            <div id="sub-header-profile-img-cont">
+                <img id="sub-header-profile-img" src="{{ asset('img/logo.jpg') }}" alt="">
+            </div>
+            <div id="sub-header-profile-text-cont">
+                <p id="sub-header-profile-text">JOHN DOE</p>
+            </div>
+            <span id="sub-header-profile-text-sm">01000023422</span>
+        </div>
+        {{-- sidebar-navigation --}}
+        <div id="sidebar-nav-cont">
+            <ul id="sidebar-nav-items-wrapper">
+                <li class="sidebar-nav-item">Account Balance</li>
+                <li class="sidebar-nav-item">Account Credit</li>
+                <li class="sidebar-nav-item">Pay Credit</li>
+                <li class="sidebar-nav-item">About</li>
+                <li class="sidebar-nav-item">Logout</li>
+            </ul>
+        </div>
+    </div>
+</div>

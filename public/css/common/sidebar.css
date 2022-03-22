@@ -1,0 +1,120 @@
+#sidebar-wrapper {
+    position: fixed;
+    top: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: #00000063;
+    display: none;
+}
+
+.sub-header-divider {
+    align-items: center;
+    border-bottom: solid 1px #F0EDED;
+    height: auto;
+    display: grid;
+    height: 60px;
+    grid-template-columns: 0fr 1fr;
+    align-items: center;
+}
+
+/* keyframes :start */
+@keyframes animateSidebarOut {
+    from {margin-left: -263px;}
+    to {margin-left: 0px;}
+}
+
+@-webkit-keyframes animateSidebarOut {
+    from {margin-left: -263px;}
+    to {margin-left: 0px;}
+}
+
+@keyframes animateSideBarIn {
+    from {margin-left: 0px;}
+    to {margin-left: -263px;}
+}
+
+@-webkit-keyframes animateSideBarIn {
+    from {margin-left: 0px;}
+    to {margin-left: -263px;}
+}
+/* keyframes :end */
+
+
+/* sub header info */
+#sub-header-info {
+    background: white;
+    width: 70%;
+    height: 100vh;
+    margin-left: 0;
+    animation: animateSidebarOut 1s 1;
+    -webkit-animation: animateSidebarOut 1s 1;
+}
+
+#sub-header-logo {
+    width: 100%;
+}
+
+#logo-image {
+    width: 40px;
+    height: 40px;
+    margin: 0px 10px 0px 18px;
+}
+
+#sub-header-name {
+    display: flex;
+}
+
+#sub-header-text {
+    padding-right: 12px;
+    font-weight: 600;
+    font-size: 0.9em;
+    color: #0149AB;
+}
+
+/* sub header profile info */
+#sub-header-profile-info {
+    display: grid;
+    justify-content: center;
+    border-bottom: solid 1px #F0EDED;
+}
+
+#sub-header-profile-img-cont {
+    text-align: center;
+}
+
+#sub-header-profile-img {
+    width: 62px;
+    height: 62px;
+    margin: 10px 0px;
+}
+
+#sub-header-profile-text-cont {
+    text-align: center;
+}
+
+#sub-header-profile-text {
+    font-weight: 400;
+    font-size: 13px;
+}
+
+#sub-header-profile-text-sm {
+    font-size: 11.5px;
+    font-weight: 400;
+    text-align: center;
+    margin-top: -14px;
+    color: #949494;
+    padding-bottom: 5px;
+}
+
+/* sidebar navigation */
+#sidebar-nav-items-wrapper {
+    margin-top: 15px;
+    margin-left: -13px;
+}
+
+.sidebar-nav-item {
+    list-style: none;
+    font-weight: 400;
+    font-size: 13px;
+    padding: 8px 0px;
+}
