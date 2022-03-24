@@ -21,15 +21,28 @@
         </a>
       </li>
       <li class="nav-item {{ request()->routeIs('admin.customer.*') ? 'active' : '' }}">
-        <a class="nav-link" data-bs-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
+        <a class="nav-link" data-bs-toggle="collapse" href="#ui-customers" aria-expanded="false" aria-controls="ui-basic">
           <span class="menu-title">Customers</span>
           <i class="menu-arrow"></i>
           <i class="mdi mdi-account-multiple menu-icon"></i>
         </a>
-        <div class="collapse" id="ui-basic">
+        <div class="collapse" id="ui-customers">
           <ul class="nav flex-column sub-menu">
             <li class="nav-item"> <a class="nav-link" href="{{ route('admin.customer.savings') }}">Savings</a></li>
             <li class="nav-item"> <a class="nav-link" href="{{ route('admin.customer.credits') }}">Credits</a></li>
+          </ul>
+        </div>
+      </li>
+      <li class="nav-item {{ request()->routeIs('admin.transactions.history.*') ? 'active' : '' }}">
+        <a class="nav-link" data-bs-toggle="collapse" href="#ui-transaction" aria-expanded="false" aria-controls="ui-basic">
+        <span class="menu-title">Transaction's History</span>
+          <i class="menu-arrow"></i>
+          <i class="mdi mdi-history menu-icon"></i>
+        </a>
+        <div class="collapse" id="ui-transaction">
+          <ul class="nav flex-column sub-menu">
+            <li class="nav-item"> <a class="nav-link" href="{{ route('admin.transactions.savings') }}">Savings</a></li>
+            <li class="nav-item"> <a class="nav-link" href="{{ route('admin.transactions.credits') }}">Credits</a></li>
           </ul>
         </div>
       </li>
