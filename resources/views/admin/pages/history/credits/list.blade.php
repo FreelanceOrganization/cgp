@@ -1,20 +1,13 @@
 @extends('layouts.admin.main')
-@section('title','Savings')
+@section('title','Credits Transactions History')
 @section('main-content')
 <div class="content-wrapper">
     <div class="page-header">
         <h3 class="page-title">
             <span class="page-title-icon bg-gradient-success text-white me-2">
-            <i class="mdi mdi-account-multiple"></i>
-            </span> Customer's Savings
+            <i class="mdi mdi-history"></i>
+            </span> Credits Transaction's History
         </h3>
-        <nav aria-label="breadcrumb">
-            <ul class="breadcrumb">
-            <li class="breadcrumb-item active" aria-current="page">
-                <a type="button" class="btn btn-outline-success btn-fw" href="{{ route('admin.customer.add') }}"><i class="mdi mdi-account-plus"></i> New Customer</a>
-            </li>
-            </ul>
-        </nav>
     </div>
 
     <div class="row">
@@ -36,11 +29,11 @@
                     <thead>
                     <tr>
                         <th> Customer </th>
+                        <th> Transaction Type </th>
+                        <th> Amount </th>
                         <th> Balance </th>
-                        <th> Registered Date </th>
-                        <th> Last Update </th>
-                        <th> Deposit/Withdraw </th>
-                        <th> Actions </th>
+                        <th> Date </th>
+                        <th> Time </th>
                     </tr>
                     </thead>
                     <tbody>
@@ -56,11 +49,11 @@
                         </td>
                         <td> December 5, 2017 </td>
                         <td>
-                            <a href="{{ route('admin.customer.transaction.form') }}" class="btn btn-outline-success btn-sm" data-toggle="tooltip" data-placement="top" title="Deposit"><i class="mdi mdi-database-plus"></i></a>
+                            <a class="btn btn-outline-success btn-sm" data-toggle="tooltip" data-placement="top" title="Deposit"><i class="mdi mdi-database-plus"></i></a>
                             <a class="btn btn-outline-danger btn-sm" data-toggle="tooltip" data-placement="top" title="Withdraw"><i class="mdi mdi-database-minus"></i></a>
                         </td>
                         <td>
-                            <a href="{{ route('admin.customer.edit') }}" class="btn btn-outline-secondary btn-sm" data-toggle="tooltip" data-placement="top" title="Edit/Update"><i class="mdi mdi-table-edit"></i></a>
+                            <a href="{{ route('admin.customer.newsavings') }}" class="btn btn-outline-secondary btn-sm" data-toggle="tooltip" data-placement="top" title="Edit/Update"><i class="mdi mdi-table-edit"></i></a>
                             <a class="btn btn-outline-danger btn-sm" data-toggle="tooltip" data-placement="top" title="Delete"><i class="mdi mdi-delete"></i></a>
                         </td>
                     </tr>
@@ -76,11 +69,11 @@
                         </td>
                         <td> Dec 12, 2017 </td>
                         <td>
-                            <a href="{{ route('admin.customer.transaction.form') }}" class="btn btn-outline-success btn-sm" data-toggle="tooltip" data-placement="top" title="Deposit"><i class="mdi mdi-database-plus"></i></a>
+                            <a class="btn btn-outline-success btn-sm" data-toggle="tooltip" data-placement="top" title="Deposit"><i class="mdi mdi-database-plus"></i></a>
                             <a class="btn btn-outline-danger btn-sm" data-toggle="tooltip" data-placement="top" title="Withdraw"><i class="mdi mdi-database-minus"></i></a>
                         </td>
                         <td>
-                            <a href="{{ route('admin.customer.edit') }}" class="btn btn-outline-secondary btn-sm" data-toggle="tooltip" data-placement="top" title="Edit/Update"><i class="mdi mdi-table-edit"></i></a>
+                            <a href="{{ route('admin.customer.newsavings') }}" class="btn btn-outline-secondary btn-sm" data-toggle="tooltip" data-placement="top" title="Edit/Update"><i class="mdi mdi-table-edit"></i></a>
                             <a class="btn btn-outline-danger btn-sm" data-toggle="tooltip" data-placement="top" title="Delete"><i class="mdi mdi-delete"></i></a>
                         </td>
                     </tr>
@@ -96,11 +89,11 @@
                         </td>
                         <td> Dec 16, 2017 </td>
                         <td>
-                            <a href="{{ route('admin.customer.transaction.form') }}" class="btn btn-outline-success btn-sm" data-toggle="tooltip" data-placement="top" title="Deposit"><i class="mdi mdi-database-plus"></i></a>
+                            <a class="btn btn-outline-success btn-sm" data-toggle="tooltip" data-placement="top" title="Deposit"><i class="mdi mdi-database-plus"></i></a>
                             <a class="btn btn-outline-danger btn-sm" data-toggle="tooltip" data-placement="top" title="Withdraw"><i class="mdi mdi-database-minus"></i></a>
                         </td>
                         <td>
-                            <a href="{{ route('admin.customer.edit') }}" class="btn btn-outline-secondary btn-sm" data-toggle="tooltip" data-placement="top" title="Edit/Update"><i class="mdi mdi-table-edit"></i></a>
+                            <a href="{{ route('admin.customer.newsavings') }}" class="btn btn-outline-secondary btn-sm" data-toggle="tooltip" data-placement="top" title="Edit/Update"><i class="mdi mdi-table-edit"></i></a>
                             <a class="btn btn-outline-danger btn-sm" data-toggle="tooltip" data-placement="top" title="Delete"><i class="mdi mdi-delete"></i></a>
                         </td>
                     </tr>
@@ -116,11 +109,11 @@
                         </td>
                         <td> Dec 3, 2017 </td>
                         <td>
-                            <a href="{{ route('admin.customer.transaction.form') }}" class="btn btn-outline-success btn-sm" data-toggle="tooltip" data-placement="top" title="Deposit"><i class="mdi mdi-database-plus"></i></a>
+                            <a class="btn btn-outline-success btn-sm" data-toggle="tooltip" data-placement="top" title="Deposit"><i class="mdi mdi-database-plus"></i></a>
                             <a class="btn btn-outline-danger btn-sm" data-toggle="tooltip" data-placement="top" title="Withdraw"><i class="mdi mdi-database-minus"></i></a>
                         </td>
                         <td>
-                            <a href="{{ route('admin.customer.edit') }}" class="btn btn-outline-secondary btn-sm" data-toggle="tooltip" data-placement="top" title="Edit/Update"><i class="mdi mdi-table-edit"></i></a>
+                            <a href="{{ route('admin.customer.newsavings') }}" class="btn btn-outline-secondary btn-sm" data-toggle="tooltip" data-placement="top" title="Edit/Update"><i class="mdi mdi-table-edit"></i></a>
                             <a class="btn btn-outline-danger btn-sm" data-toggle="tooltip" data-placement="top" title="Delete"><i class="mdi mdi-delete"></i></a>
                         </td>
                     </tr>

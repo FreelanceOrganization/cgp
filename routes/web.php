@@ -25,25 +25,44 @@ Route::get('/details',function(){
     return view('user.view-details');
 });
 
-Route::prefix('admin')->group(function(){
-    Route::get('/testing',function(){
+Route::prefix('admin')->name('admin.')->group(function(){
+    Route::get('/dashboard',function(){
         return view('admin.pages.dashboard');
-    })->name('admin.dashboard');
+    })->name('dashboard');
 
-    Route::get('/customer/savings',function(){
+    Route::get('/customer-savings',function(){
         return view('admin.pages.savings.index');
-    })->name('admin.customer.savings');
+    })->name('customer.savings');
 
-    Route::get('/customer/savings/new',function(){
+    Route::get('/customer-savings/edit',function(){
         return view('admin.pages.savings.form');
-    })->name('admin.customer.newsavings');
+    })->name('customer.edit');
 
-    Route::get('/customer/credits',function(){
+    Route::get('/customer-savings/add-customer',function(){
+        return view('admin.pages.savings.form');
+    })->name('customer.add');
+
+    Route::get('/customer-transaction-add',function(){
+        return view('admin.pages.transactions.form');
+    })->name('customer.transaction.form');
+
+    Route::get('/customer-credits',function(){
         return view('admin.pages.credits.index');
-    })->name('admin.customer.credits');
+    })->name('customer.credits');
 
-    Route::get('/customer/credits/new',function(){
+    Route::get('/customer-credits/new',function(){
         return view('admin.pages.credits.form');
-    })->name('admin.customer.newcredits');
+    })->name('customer.newcredits');
 
+    Route::get('/manage-account',function(){
+        return view('admin.pages.account');
+    })->name('manage');
+
+    Route::get('/transactions-history-savings',function(){
+        return view('admin.pages.history.savings.list');
+    })->name('transactions.savings');
+
+    Route::get('/transactions-history-credits',function(){
+        return view('admin.pages.history.credits.list');
+    })->name('transactions.credits');
 });
