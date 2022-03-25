@@ -57,6 +57,7 @@
     @stack('javascript')
     <script src="{{ asset('admin/assets/js/dashboard.js') }}"></script>
     <script src="{{ asset('admin/assets/js/todolist.js') }}"></script>
+    <script src="{{ asset('admin/assets/js/common/common.js') }}"></script>
     <!-- End custom js for this page -->
   </body>
 </html>
