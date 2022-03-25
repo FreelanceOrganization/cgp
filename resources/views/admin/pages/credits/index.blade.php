@@ -1,12 +1,15 @@
 @extends('layouts.admin.main')
 @section('title','Credits')
+@push('css')
+    <link rel="stylesheet" href="{{ asset('admin/assets/css/common.css') }}">
+@endpush
 @section('main-content')
 <div class="content-wrapper">
     <div class="page-header">
         <h3 class="page-title">
             <span class="page-title-icon bg-gradient-success text-white me-2">
             <i class="mdi mdi-account-multiple"></i>
-            </span> Customer's Credits
+            </span> Credits Savings
         </h3>
         <nav aria-label="breadcrumb">
             <ul class="breadcrumb">
@@ -17,6 +20,8 @@
         </nav>
     </div>
 
+    @include('common.admin.pop-ups.returnMessage')
+
     <div class="row">
         <div class="col-12 grid-margin">
             <div class="card">
@@ -25,9 +30,9 @@
                     <form class="d-flex align-items-center h-100" action="#">
                       <div class="input-group">
                         <div class="input-group-prepend bg-transparent">
-                            <i class="input-group-text border-0 mdi mdi-account-search-outline"></i>
+                          <i class="input-group-text border-0 mdi mdi-account-search-outline"></i>
                         </div>
-                        <input type="text" class="form-control bg-transparent border-0" placeholder="Search customers">
+                        <input type="text" class="form-control bg-transparent border-0" id="search" placeholder="Search customers">
                       </div>
                     </form>
                 </div>
@@ -39,91 +44,39 @@
                         <th> Balance </th>
                         <th> Registered Date </th>
                         <th> Last Update </th>
-                        <th> Pay/Add </th>
+                        <th> Add/Pay </th>
                         <th> Actions </th>
                     </tr>
                     </thead>
                     <tbody>
-                    <tr>
-                        <td>
-                            <img src="{{ asset('admin/assets/images/faces/face1.jpg') }}" class="me-2" alt="image"> David Grey
-                        </td>
-                        <td>
-                            <label class="badge badge-gradient-danger">₱ 500.00</label>
-                        </td>
-                        <td>
-                            February 5, 2016
-                        </td>
-                        <td> December 5, 2017 </td>
-                        <td>
-                            <a href="{{ route('admin.customer.transaction.form') }}" class="btn btn-outline-success btn-sm" data-toggle="tooltip" data-placement="top" title="Add"><i class="mdi mdi-database-plus"></i></a>
-                            <a class="btn btn-outline-danger btn-sm" data-toggle="tooltip" data-placement="top" title="Pay"><i class="mdi mdi-database-minus"></i></a>
-                        </td>
-                        <td>
-                            <a href="{{ route('admin.customer.newcredits') }}" class="btn btn-outline-secondary btn-sm" data-toggle="tooltip" data-placement="top" title="Edit/Update"><i class="mdi mdi-table-edit"></i></a>
-                            <a class="btn btn-outline-danger btn-sm" data-toggle="tooltip" data-placement="top" title="Delete"><i class="mdi mdi-delete"></i></a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <img src="{{ asset('admin/assets/images/faces/face2.jpg') }}" class="me-2" alt="image"> Stella Johnson
-                        </td>
-                        <td>
-                            <label class="badge badge-gradient-danger">₱ 500.00</label>
-                        </td>
-                        <td>
-                            February 5, 2016
-                        </td>
-                        <td> December 5, 2017 </td>
-                        <td>
-                            <a href="{{ route('admin.customer.transaction.form') }}" class="btn btn-outline-success btn-sm" data-toggle="tooltip" data-placement="top" title="Add"><i class="mdi mdi-database-plus"></i></a>
-                            <a class="btn btn-outline-danger btn-sm" data-toggle="tooltip" data-placement="top" title="Pay"><i class="mdi mdi-database-minus"></i></a>
-                        </td>
-                        <td>
-                            <a href="{{ route('admin.customer.newcredits') }}" class="btn btn-outline-secondary btn-sm" data-toggle="tooltip" data-placement="top" title="Edit/Update"><i class="mdi mdi-table-edit"></i></a>
-                            <a class="btn btn-outline-danger btn-sm" data-toggle="tooltip" data-placement="top" title="Delete"><i class="mdi mdi-delete"></i></a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                        <img src="{{ asset('admin/assets/images/faces/face3.jpg') }}" class="me-2" alt="image"> Marina Michel
-                        </td>
-                        <td>
-                            <label class="badge badge-gradient-danger">₱ 500.00</label>
-                        </td>
-                        <td>
-                            February 5, 2016
-                        </td>
-                        <td> December 5, 2017 </td>
-                        <td>
-                            <a href="{{ route('admin.customer.transaction.form') }}" class="btn btn-outline-success btn-sm" data-toggle="tooltip" data-placement="top" title="Add"><i class="mdi mdi-database-plus"></i></a>
-                            <a class="btn btn-outline-danger btn-sm" data-toggle="tooltip" data-placement="top" title="Pay"><i class="mdi mdi-database-minus"></i></a>
-                        </td>
-                        <td>
-                            <a href="{{ route('admin.customer.newcredits') }}" class="btn btn-outline-secondary btn-sm" data-toggle="tooltip" data-placement="top" title="Edit/Update"><i class="mdi mdi-table-edit"></i></a>
-                            <a class="btn btn-outline-danger btn-sm" data-toggle="tooltip" data-placement="top" title="Delete"><i class="mdi mdi-delete"></i></a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                        <img src="{{ asset('admin/assets/images/faces/face5.jpg') }}" class="me-2" alt="image"> John Doe
-                        </td>
-                        <td>
-                            <label class="badge badge-gradient-danger">₱ 500.00</label>
-                        </td>
-                        <td>
-                            February 5, 2016
-                        </td>
-                        <td> December 5, 2017 </td>
-                        <td>
-                            <a href="{{ route('admin.customer.transaction.form') }}" class="btn btn-outline-success btn-sm" data-toggle="tooltip" data-placement="top" title="Add"><i class="mdi mdi-database-plus"></i></a>
-                            <a class="btn btn-outline-danger btn-sm" data-toggle="tooltip" data-placement="top" title="Pay"><i class="mdi mdi-database-minus"></i></a>
-                        </td>
-                        <td>
-                            <a href="{{ route('admin.customer.newcredits') }}" class="btn btn-outline-secondary btn-sm" data-toggle="tooltip" data-placement="top" title="Edit/Update"><i class="mdi mdi-table-edit"></i></a>
-                            <a class="btn btn-outline-danger btn-sm" data-toggle="tooltip" data-placement="top" title="Delete"><i class="mdi mdi-delete"></i></a>
-                        </td>
-                    </tr>
+                        @if($users->isEmpty())
+                            <tr>
+                                <td colspan=10 class="text-center">No Data</td>
+                            </tr>
+                        @else
+                            @foreach ($users as $user)
+                                <tr data-toggle="tooltip" class="data" data-placement="top" title="View Transactions History" style="cursor: pointer">
+                                    <td class="capitalize">
+                                    <img src="{{ asset('admin/assets/images/faces/face1.jpg') }}" class="me-2" alt="image"> {{ $user->firstname }} {{ $user->lastname }}
+                                    </td>
+                                    <td>
+                                        ₱ {{ number_format($user->purpose->first()->available_balance, 2, '.', ',')  }}
+                                    </td>
+                                    <td>
+                                        {{ $user->created_at->toDayDateTimeString() }}
+                                    </td>
+                                    <td> {{ $user->purpose()->latest()->first()->updated_at->toDayDateTimeString() }} </td>
+                                    <td>
+                                        <a href="{{ route('admin.customer.transaction.form') }}" class="btn btn-outline-success btn-sm" data-toggle="tooltip" data-placement="top" title="Deposit"><i class="mdi mdi-database-plus"></i></a>
+                                        <a class="btn btn-outline-danger btn-sm" data-toggle="tooltip" data-placement="top" title="Withdraw"><i class="mdi mdi-database-minus"></i></a>
+                                    </td>
+                                    <td>
+                                        <a href="{{ route('admin.customer.credits.edit',['customer' => $user->id]) }}" class="btn btn-outline-secondary btn-sm" data-toggle="tooltip" data-placement="top" title="Edit/Update"><i class="mdi mdi-table-edit"></i></a>
+                                        <a class="btn btn-outline-danger btn-sm myBtn" data="{{ $user->id }}" data-toggle="tooltip" data-placement="top" title="Delete"><i class="mdi mdi-delete"></i></a>
+                                    </td>
+                                </tr>
+                            @endforeach
+                        @endif
                     </tbody>
                 </table>
                 </div>
@@ -132,5 +85,5 @@
         </div>
     </div>
 </div>
+@include('common.admin.pop-ups.modal')
 @endsection
-

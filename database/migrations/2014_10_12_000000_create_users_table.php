@@ -17,9 +17,8 @@ class CreateUsersTable extends Migration
             $table->id()->from(9000000);
             $table->string('firstname');
             $table->string('lastname');
-            $table->integer('age');
-            $table->boolean('role');
-            $table->boolean('status');
+            $table->boolean('role')->default(false);
+            $table->boolean('status')->default(true);
             $table->string('contact_number');
             $table->string('nationality');
             $table->string('gender')->nullable();
@@ -27,10 +26,9 @@ class CreateUsersTable extends Migration
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
-            $table->unsignedBigInteger('savings_id')->nullable();
-            $table->unsignedBigInteger('credits_id')->nullable();
             $table->rememberToken();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

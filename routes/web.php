@@ -25,34 +25,34 @@ Route::get('/details',function(){
     return view('user.view-details');
 });
 
-Route::prefix('admin')->name('admin.')->group(function(){
+Route::namespace('Admin')->prefix('admin')->name('admin.')->group(function(){
     Route::get('/dashboard',function(){
         return view('admin.pages.dashboard');
     })->name('dashboard');
 
-    Route::get('/customer-savings',function(){
-        return view('admin.pages.savings.index');
-    })->name('customer.savings');
+    Route::name('customer.')->group(function(){
+        // Savings
+        Route::get('/customer-savings','SavingsController@index')->name('savings');
+        Route::get('/customer-savings/add-customer','SavingsController@create')->name('add');
+        Route::post('/customer-savings/add-customer','SavingsController@store')->name('savings.store');
+        Route::get('/customer-savings/edit/{customer}','SavingsController@show')->name('edit');
+        Route::post('/customer-savings/edit/{customer}','SavingsController@update')->name('edit.store');
+        Route::post('/customer-savings/delete','SavingsController@destroy')->name('savings.delete');
 
-    Route::get('/customer-savings/edit',function(){
-        return view('admin.pages.savings.form');
-    })->name('customer.edit');
+        // Credits
+        Route::get('/customer-credits','CreditsController@index')->name('credits');
+        Route::get('/customer-credits/new','CreditsController@create')->name('newcredits');
+        Route::post('/customer-credits/new','CreditsController@store')->name('newcredits.store');
+        Route::get('/customer-credits/edit/{customer}','CreditsController@show')->name('credits.edit');
+        Route::post('/customer-credits/edit/{customer}','CreditsController@update')->name('credits.edit.store');
+        Route::post('/customer-credits/delete','CreditsController@destroy')->name('credits.delete');
+    });
 
-    Route::get('/customer-savings/add-customer',function(){
-        return view('admin.pages.savings.form');
-    })->name('customer.add');
 
     Route::get('/customer-transaction-add',function(){
         return view('admin.pages.transactions.form');
     })->name('customer.transaction.form');
 
-    Route::get('/customer-credits',function(){
-        return view('admin.pages.credits.index');
-    })->name('customer.credits');
-
-    Route::get('/customer-credits/new',function(){
-        return view('admin.pages.credits.form');
-    })->name('customer.newcredits');
 
     Route::get('/manage-account',function(){
         return view('admin.pages.account');
