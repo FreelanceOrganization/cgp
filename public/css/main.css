@@ -1,0 +1,50 @@
+/* alert css */
+#alert-wrapper {
+    background: #12111194;
+    height: 100vh;
+    position: fixed;
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    margin-top: -60px;
+    z-index: 2;
+    display: none;
+
+}
+#alert-cont {
+    background-color: white;
+    width: 80vw;
+    height: 40vw;
+    margin-top: 90px;
+    border-radius: 10px;
+}
+
+#alert-inner-cont {
+    width: 91%;
+    height: 82%;
+    margin: 4.5%;
+    display: grid;
+    justify-content: center;
+    align-items: center;
+}
+
+#alert-message-cont, #alert-button-cont {
+    width: 62vw;
+    height: 100%;
+    display: grid;
+    justify-items: center;
+    align-items: center;
+}
+
+#alert-button {
+    width: 100%;
+    border: none;
+    background: rgba(1, 73, 171, 0.68);
+    color: white;
+    border-radius: 10px;
+}
+
+#alert-message {
+    font-size: 0.9em;
+    font-weight: 400;
+}

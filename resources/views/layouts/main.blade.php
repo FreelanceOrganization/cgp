@@ -11,9 +11,11 @@
 
 
     {{-- link for css --}}
+    <link rel="stylesheet" href="{{ asset('css/main.css') }}">
     @stack('css')
 </head>
 <body>
+    @include('common.user.alerts.alert')
     <div class="wrapper">
         @yield('content')
     </div>

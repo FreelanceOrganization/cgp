@@ -21,8 +21,16 @@ Route::get('/user',function(){
     return view('user.balance');
 });
 
-Route::get('/details',function(){
+Route::get('/credit',function(){
+    return view('user.credit');
+});
+
+Route::get('/view-details',function(){
     return view('user.view-details');
+});
+
+Route::get('/pay-credit',function(){
+    return view('user.pay-credit');
 });
 
 Route::prefix('admin')->name('admin.')->group(function(){
