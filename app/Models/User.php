@@ -7,10 +7,14 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class User extends Authenticatable
 {
-    use HasApiTokens, HasFactory, Notifiable;
+    use HasApiTokens, HasFactory, Notifiable, SoftDeletes;
+
+    const ROLE_ADMIN = 1;
+    const ROLE_CUSTOMER = 0;
 
     /**
      * The attributes that are mass assignable.
@@ -18,7 +22,14 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $fillable = [
-        'name',
+        'firstname',
+        'lastname',
+        'role',
+        'status',
+        'contact_number',
+        'nationality',
+        'gender',
+        'birthdate',
         'email',
         'password',
     ];
@@ -41,4 +52,15 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    // Relationship
+    public function address()
+    {
+        return $this->hasOne(Address::class);
+    }
+
+    public function purpose()
+    {
+        return $this->hasMany(Purpose::class);
+    }
 }
