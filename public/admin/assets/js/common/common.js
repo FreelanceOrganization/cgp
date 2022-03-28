@@ -22,3 +22,9 @@ window.onclick = function(event) {
         $('#myModal').css('display','none');
     }
 }
+
+$('table.table tr.data').click(function(e){
+    if(e.target.tagName == "TD"){
+        window.location.href = $(this).data('url');
+    }
+})
