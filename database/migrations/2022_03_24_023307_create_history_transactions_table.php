@@ -18,6 +18,7 @@ class CreateHistoryTransactionsTable extends Migration
             $table->unsignedBigInteger('purpose_id')->nullable();
             $table->string('transaction_type');
             $table->decimal('amount');
+            $table->decimal('available_balance');
             $table->boolean('status')->default(true);
             $table->timestamps();
             $table->softDeletes();

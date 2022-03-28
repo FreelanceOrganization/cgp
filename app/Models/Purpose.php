@@ -10,9 +10,6 @@ class Purpose extends Model
 {
     use HasFactory, SoftDeletes;
 
-    const CREDITS = 0;
-    const SAVINGS = 1;
-
     protected $fillable = [
         'user_id',
         'type',

@@ -16,6 +16,14 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule)
     {
         // $schedule->command('inspire')->hourly();
+        $schedule->call(function(){
+            \DB::table('purposes')->where('type',config('const.purpose.savings'))->each(function($item, $key){
+                if($item->interest == null){
+                    $item->interest = 1;
+                }
+                $item->update(['available_balance' => $item->available_balance*$item->interest]);
+            });
+        })->monthly();
     }
 
     /**

@@ -2,27 +2,28 @@
 
 namespace App\Http\Managers;
 use App\Models\User;
-use App\Models\Purpose;
 use App\Models\HistoryTransaction;
+use Illuminate\Support\Facades\Hash;
 
 class UserManager
 {
     public function storeSavings($data)
     {
-        $data['type'] = Purpose::SAVINGS;
-        $data['transaction_type'] = HistoryTransaction::TYPE_DEPOSIT;
+        $data['type'] = config('const.purpose.savings');
+        $data['transaction_type'] = config('const.transactions.deposit');
         $this->storeData($data);
     }
 
     public function storeCredits($data)
     {
-        $data['type'] = Purpose::CREDITS;
-        $data['transaction_type'] = HistoryTransaction::TYPE_ADD_DEBTS;
+        $data['type'] = config('const.purpose.credits');
+        $data['transaction_type'] = config('const.transactions.add_debts');
         $this->storeData($data);
     }
 
     public function storeData($data)
     {
+        $data['password'] = Hash::make($data['password']);
         $user = User::create($data);
         $data['available_balance'] = $data['amount'];
         $user->address()->create($data);
@@ -73,5 +74,14 @@ class UserManager
             return true;
         }
         return false;
+    }
+
+
+    // History Transactions
+    public function getHistory($type)
+    {
+        return HistoryTransaction::whereHas('purpose',function($q) use ($type){
+            $q->where('type', '=', $type);
+        })->orderBy('created_at', 'desc')->get();
     }
 }

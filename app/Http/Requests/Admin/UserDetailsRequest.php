@@ -31,7 +31,7 @@ class UserDetailsRequest extends FormRequest
             'gender'    => 'required',
             'birthdate' => 'required|before:today',
             'nationality' => 'required',
-            'contact_number' => 'required|numeric',
+            'contact_number' => 'required|regex:/(09)[0-9]{9}/|min:11|max:11',
             'barangay' => 'required',
             'municipality' => 'required',
             'province' => 'required',
@@ -41,7 +41,7 @@ class UserDetailsRequest extends FormRequest
         if($route->action['as'] == "admin.customer.savings.store" || $route->action['as'] == "admin.customer.newcredits.store"){
             $rtn['password'] = 'required';
             $rtn['email'] = 'required|email|unique:users';
-            $rtn['amount'] = 'required';
+            $rtn['amount'] = 'required|integer|min:0';
         }
 
         if($route->action['as'] == "admin.customer.edit.store"){
