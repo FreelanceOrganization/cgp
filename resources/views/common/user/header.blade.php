@@ -1,4 +1,3 @@
-@extends('layouts.main')
 @push('css')
 <link rel="stylesheet" href="{{ asset('css/common/header.css') }}">
 <link rel="stylesheet" href="{{ asset('css/common/sidebar.css') }}">

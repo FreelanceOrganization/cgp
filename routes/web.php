@@ -21,8 +21,16 @@ Route::get('/user',function(){
     return view('user.balance');
 });
 
-Route::get('/details',function(){
+Route::get('/credit',function(){
+    return view('user.credit');
+});
+
+Route::get('/view-details',function(){
     return view('user.view-details');
+});
+
+Route::get('/pay-credit',function(){
+    return view('user.pay-credit');
 });
 
 Route::namespace('Admin')->prefix('admin')->name('admin.')->group(function(){
@@ -49,20 +57,21 @@ Route::namespace('Admin')->prefix('admin')->name('admin.')->group(function(){
     });
 
 
-    Route::get('/customer-transaction-add',function(){
-        return view('admin.pages.transactions.form');
-    })->name('customer.transaction.form');
+    Route::get('/customer-transaction-savings/deposit/{user}','SavingsController@savingsTransactionDeposit')->name('customer.transaction.deposit');
+    Route::post('/customer-transaction-savings/store/{user}','SavingsController@storeSavingsTransactions')->name('customer.transaction.deposit.store');
+    Route::get('/customer-transaction-savings/withdraw/{user}','SavingsController@savingsTransactionWithdraw')->name('customer.transaction.withdraw');
 
+    Route::get('/customer-transaction-credits/add/{user}','CreditsController@creditsTransactionAdd')->name('customer.transaction.credits.add');
+    Route::get('/customer-transaction-credits/pay/{user}','CreditsController@creditsTransactionPay')->name('customer.transaction.credits.pay');
+    Route::post('/customer-transaction-credits/store/{user}','CreditsController@storeCreditsTransactions')->name('customer.transaction.credits.store');
 
     Route::get('/manage-account',function(){
         return view('admin.pages.account');
     })->name('manage');
 
-    Route::get('/transactions-history-savings',function(){
-        return view('admin.pages.history.savings.list');
-    })->name('transactions.savings');
+    Route::get('/transactions-history-savings','SavingsController@savingsHistory')->name('transactions.savings');
+    Route::get('/transactions-history-savings/{user}','SavingsController@userSavingsHistory')->name('transactions.user.savings');
+    Route::get('/transactions-history-credits','CreditsController@creditsHistory')->name('transactions.credits');
+    Route::get('/transactions-history-credits/{user}','CreditsController@userCreditsHistory')->name('transactions.user.credits');
 
-    Route::get('/transactions-history-credits',function(){
-        return view('admin.pages.history.credits.list');
-    })->name('transactions.credits');
 });

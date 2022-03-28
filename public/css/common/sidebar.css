@@ -5,6 +5,7 @@
     height: 100vh;
     background-color: #00000063;
     display: none;
+    z-index: 2;
 }
 
 .sub-header-divider {
