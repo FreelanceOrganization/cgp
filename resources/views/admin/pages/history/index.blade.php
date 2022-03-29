@@ -23,7 +23,7 @@
                         <div class="input-group-prepend bg-transparent">
                           <i class="input-group-text border-0 mdi mdi-account-search-outline"></i>
                         </div>
-                        <input type="text" class="form-control bg-transparent border-0" placeholder="Search customers">
+                        <input type="text" class="form-control bg-transparent border-0" id="search" placeholder="Search customers">
                       </div>
                     </form>
                 </div>

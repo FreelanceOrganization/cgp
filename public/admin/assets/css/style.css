@@ -14455,3 +14455,10 @@ dl {
 .capitalize {
     text-transform: capitalize;
 }
+
+.invalid{
+    border: 1px solid red !important;
+}
+input[type='text']{
+    text-transform:capitalize;
+}

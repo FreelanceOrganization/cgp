@@ -20,7 +20,7 @@ class SavingsController extends Controller
     {
         $this->userManager = $userManager;
         $this->savings = config('const.purpose.savings');
-        $this->title = "Savings";
+        $this->title = config('const.title.savings');
     }
 
     /**
@@ -144,5 +144,34 @@ class SavingsController extends Controller
         ]);
         $user->purpose->first()->transactions()->create($data);
         return redirect()->route('admin.customer.savings')->with('success',$data['label']." Successfully");
+    }
+
+    // Application from Credits to Savings
+    public function applicationForm(User $user)
+    {
+        $title = $this->title;
+        return view('admin.pages.transactions.application',compact('title','user'));
+    }
+
+    public function storeApplication(TransactionRequest $request, User $user)
+    {
+        $data = $request->all();
+        $data['type'] = config('const.purpose.savings');
+        $data['available_balance'] = $data['amount'];
+        $data['transaction_type'] = config('const.transactions.deposit');
+        $this->userManager->savePurpose($user, $data);
+
+        return redirect()->route('admin.customer.savings')->with('success','Successfully added to credits');
+    }
+
+    // Pay Credits From Savings
+    public function transactionFromCredits(User $user)
+    {
+        return view('admin.pages.transactions.pay_credits_form',compact('user'));
+    }
+
+    public function storeTransactionFromCredits(TransactionRequest $request, User $user)
+    {
+        dd($request, $user);
     }
 }

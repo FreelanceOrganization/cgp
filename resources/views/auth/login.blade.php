@@ -15,8 +15,6 @@
             <button type="submit" class="btn">LOG IN</button>
             <div class="info">
                 <a href="#" class="frgtPswd">Forgot Password?</a>
-                <p class="text">Don’t have an account?</p>
-                <a href="#">Register</a>
             </div>
         </form>
     </div>

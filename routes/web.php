@@ -46,6 +46,12 @@ Route::namespace('Admin')->prefix('admin')->name('admin.')->group(function(){
         Route::get('/customer-savings/edit/{customer}','SavingsController@show')->name('edit');
         Route::post('/customer-savings/edit/{customer}','SavingsController@update')->name('edit.store');
         Route::post('/customer-savings/delete','SavingsController@destroy')->name('savings.delete');
+        // Application
+        Route::get('/customer-savings/application/{user}','SavingsController@applicationForm')->name('savings.apply');
+        Route::post('/customer-savings/application/{user}','SavingsController@storeApplication')->name('savings.apply.store');
+        // Pay Credits from Savings
+        Route::get('/customer-savings/pay-credits/{user}','SavingsController@transactionFromCredits')->name('savings.credits.pay');
+        Route::post('/customer-savings/pay-credits/{user}','SavingsController@storeTransactionFromCredits')->name('savings.credits.store');
         // Transactions
         Route::get('/customer-transaction-savings/deposit/{user}','SavingsController@savingsTransactionDeposit')->name('transaction.deposit');
         Route::post('/customer-transaction-savings/store/{user}','SavingsController@storeSavingsTransactions')->name('transaction.deposit.store');
@@ -58,6 +64,9 @@ Route::namespace('Admin')->prefix('admin')->name('admin.')->group(function(){
         Route::get('/customer-credits/edit/{customer}','CreditsController@show')->name('credits.edit');
         Route::post('/customer-credits/edit/{customer}','CreditsController@update')->name('credits.edit.store');
         Route::post('/customer-credits/delete','CreditsController@destroy')->name('credits.delete');
+        // Application
+        Route::get('/customer-credits/application/{user}','CreditsController@applicationForm')->name('credits.apply');
+        Route::post('/customer-credits/application/{user}','CreditsController@storeApplication')->name('credits.apply.store');
         // Transactions
         Route::get('/customer-transaction-credits/add/{user}','CreditsController@creditsTransactionAdd')->name('transaction.credits.add');
         Route::get('/customer-transaction-credits/pay/{user}','CreditsController@creditsTransactionPay')->name('transaction.credits.pay');

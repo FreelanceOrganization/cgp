@@ -1,15 +1,5 @@
 @extends('layouts.admin.main')
 @section('title','New Credits')
-@push('css')
-    <style>
-        .invalid{
-            border: 1px solid red !important;
-        }
-        input[type='text']{
-            text-transform:capitalize;
-        }
-    </style>
-@endpush
 @php
     $route = \Request::route()->action['as'] == "admin.customer.credits.edit";
     if($route){
