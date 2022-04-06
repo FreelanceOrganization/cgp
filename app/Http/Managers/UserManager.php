@@ -28,26 +28,35 @@ class UserManager
         $data['available_balance'] = $data['amount'];
         $user->address()->create($data);
         $this->savePurpose($user, $data);
-        $this->saveTransactions($user, $data);
-    }
-
-    public function saveTransactions($user, $data)
-    {
-        $user->purpose()->latest()->first()->transactions()->create($data);
     }
 
     public function savePurpose($user, $data)
     {
         $user->purpose()->create($data);
+        $user->purpose()->latest()->first()->transactions()->create($data);
     }
 
     public function getUsers($type)
     {
-        $users = User::where('role',false)->whereHas('purpose',function($q) use ($type){
+        $users = User::where('role',false)->with(['purpose' => function($q) use ($type){
             $q->where('type','=',$type);
-        })->orderBy('created_at','desc')->get();
+        }])->orderBy('created_at','desc')->get();
 
         return $users;
+    }
+
+    public function countCustomers()
+    {
+        $customers = User::where('role',config('const.user.customer'))->count();
+        return $customers;
+    }
+
+    public function customerPurposes($type)
+    {
+        return [User::where('role',config('const.user.customer'))->with(['purpose' => function($q) use ($type) {
+            $q->where('type',$type);
+        }])->count()];
+
     }
 
     public function updateUser($data, $customer)
@@ -65,12 +74,11 @@ class UserManager
 
     public function removeUser($request, $type)
     {
-        $user = User::where('id',$request->customer_id)->whereHas('purpose',function($q) use ($type){
+        $user = User::where('id',$request->customer_id)->with(['purpose' => function($q) use ($type){
             $q->where('type',$type);
-        })->first();
-
+        }])->first();
         if($user){
-            $user->purpose()->delete();
+            $user->purpose->first()->delete();
             return true;
         }
         return false;

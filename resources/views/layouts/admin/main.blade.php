@@ -20,6 +20,9 @@
     <link rel="shortcut icon" href="{{ asset('admin/assets/images/logo.png') }}" />
   </head>
   <body>
+    @php
+        $user = Auth::user();
+    @endphp
     <div class="container-scroller">
 
       <!-- views/common/admin/navbar -->

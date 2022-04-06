@@ -21,7 +21,7 @@ class CreditsController extends Controller
     {
         $this->userManager = $userManager;
         $this->credits = config('const.purpose.credits');
-        $this->title = "Credits";
+        $this->title = config('const.title.credits');
     }
 
     /**
@@ -145,5 +145,24 @@ class CreditsController extends Controller
         ]);
         $user->purpose->first()->transactions()->create($data);
         return redirect()->route('admin.customer.credits')->with('success',$data['label']." Successfully");
+    }
+
+
+    // Apply Credits from Savings Account
+    public function applicationForm(User $user)
+    {
+        $title = $this->title;
+        return view('admin.pages.transactions.application',compact('title','user'));
+    }
+
+    public function storeApplication(TransactionRequest $request, User $user)
+    {
+        $data = $request->all();
+        $data['type'] = config('const.purpose.credits');
+        $data['available_balance'] = $data['amount'];
+        $data['transaction_type'] = config('const.transactions.add_debts');
+        $this->userManager->savePurpose($user, $data);
+
+        return redirect()->route('admin.customer.credits')->with('success','Successfully added to credits');
     }
 }

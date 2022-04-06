@@ -23,7 +23,7 @@
                         <div class="input-group-prepend bg-transparent">
                           <i class="input-group-text border-0 mdi mdi-account-search-outline"></i>
                         </div>
-                        <input type="text" class="form-control bg-transparent border-0" placeholder="Search customers">
+                        <input type="text" class="form-control bg-transparent border-0" id="search" placeholder="Search customers">
                       </div>
                     </form>
                 </div>
@@ -52,7 +52,7 @@
                             data-url={{ $route ? route('admin.transactions.user.savings',['user'=>$transaction->purpose->user_id])
                             : route('admin.transactions.user.credits',['user'=>$transaction->purpose->user_id]) }}>
                                 <td class="capitalize">
-                                <img src="{{ asset('admin/assets/images/faces/face1.jpg') }}" class="me-2" alt="image"> {{ $transaction->purpose->user->firstname }} {{ $transaction->purpose->user->lastname }}
+                                     {{ $transaction->purpose->user->firstname }} {{ $transaction->purpose->user->lastname }}
                                 </td>
                                 <td>
                                     {{ $transaction->transaction_type }}

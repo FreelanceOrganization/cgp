@@ -37,7 +37,7 @@
                     </form>
                 </div>
                 <div class="table-responsive">
-                <table class="table">
+                <table class="table text-center">
                     <thead>
                     <tr>
                         <th> Customer </th>
@@ -55,10 +55,11 @@
                             </tr>
                         @else
                             @foreach ($users as $user)
+                            @if(!$user->purpose->isEmpty())
                                 <tr data-url={{ route('admin.transactions.user.savings',['user'=>$user->id])}}
                                 data-toggle="tooltip" data-placement="top" title="View Transactions History" style="cursor: pointer" class="data">
                                     <td class="capitalize">
-                                    <img src="{{ asset('admin/assets/images/faces/face1.jpg') }}" class="me-2" alt="image"> {{ $user->firstname }} {{ $user->lastname }}
+                                        {{ $user->firstname }} {{ $user->lastname }}
                                     </td>
                                     <td>
                                         ₱ {{ number_format($user->purpose->first()->available_balance, 2, '.', ',')  }}
@@ -66,16 +67,20 @@
                                     <td>
                                         {{ $user->created_at->toDayDateTimeString() }}
                                     </td>
-                                    <td> {{ $user->purpose()->latest()->first()->updated_at->toDayDateTimeString() }} </td>
+                                    <td> {{ $user->purpose->first()->updated_at->toDayDateTimeString() }} </td>
                                     <td>
-                                        <a href="{{ route('admin.customer.transaction.deposit',['user' => $user->id]) }}" class="btn btn-outline-success btn-sm" data-toggle="tooltip" data-placement="top" title="Deposit"><i class="mdi mdi-database-plus"></i></a>
-                                        <a href="{{ route('admin.customer.transaction.withdraw',['user' => $user->id]) }}" class="btn btn-outline-danger btn-sm" data-toggle="tooltip" data-placement="top" title="Withdraw"><i class="mdi mdi-database-minus"></i></a>
+                                        <a href="{{ route('admin.customer.transaction.deposit',['user' => $user->id]) }}" class="btn btn-outline-success " data-toggle="tooltip" data-placement="top" title="Deposit"><i class="mdi mdi-database-plus"></i></a>
+                                        <a href="{{ route('admin.customer.transaction.withdraw',['user' => $user->id]) }}" class="btn btn-outline-danger " data-toggle="tooltip" data-placement="top" title="Withdraw"><i class="mdi mdi-database-minus"></i></a>
                                     </td>
                                     <td>
+                                        @if(!$user->purpose()->where('type',config('const.purpose.credits'))->first())
+                                            <a href="{{ route('admin.customer.credits.apply',['user' => $user->id]) }}" class="btn btn-outline-primary btn-sm" data-toggle="tooltip" data-placement="top" title="Apply Credits"><i class="mdi mdi-application"></i></a>
+                                        @endif
                                         <a href="{{ route('admin.customer.edit',['customer' => $user->id]) }}" class="btn btn-outline-secondary btn-sm" data-toggle="tooltip" data-placement="top" title="Edit/Update"><i class="mdi mdi-table-edit"></i></a>
                                         <a class="btn btn-outline-danger btn-sm myBtn" data="{{ $user->id }}" data-toggle="tooltip" data-placement="top" title="Delete"><i class="mdi mdi-delete"></i></a>
                                     </td>
                                 </tr>
+                            @endif
                             @endforeach
                         @endif
                     </tbody>

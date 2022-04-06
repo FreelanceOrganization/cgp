@@ -145,7 +145,7 @@
     @endif
   </div>
   @if(!$route)
-  <p class="card-description"> First Deposit </p>
+  <p class="card-description"> Starting Amount </p>
   <div class="col-md-6">
     <div class="form-group row">
       <label class="col-sm-3 col-form-label">Amount</label>

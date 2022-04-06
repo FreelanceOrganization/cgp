@@ -13,13 +13,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('auth.login');
-});
+Route::get('/', 'AuthController@form')->name('login');
+Route::post('/', 'AuthController@login')->name('login.send');
+
 
 Route::get('/user',function(){
     return view('user.balance');
-});
+})->name('customer');
 
 Route::get('/credit',function(){
     return view('user.credit');
@@ -33,15 +33,11 @@ Route::get('/pay-credit',function(){
     return view('user.pay-credit');
 });
 
-Route::get('/about', function() {
-    return view('user.about');
-});
+Route::any('/logout','AuthController@logout')->name('logout');
 
-Route::namespace('Admin')->prefix('admin')->name('admin.')->group(function(){
-    Route::get('/dashboard',function(){
-        return view('admin.pages.dashboard');
-    })->name('dashboard');
 
+Route::middleware(['auth'])->namespace('Admin')->prefix('admin')->name('admin.')->group(function(){
+    Route::get('/dashboard','DashboardController@index')->name('dashboard');
     Route::name('customer.')->group(function(){
         // Savings
         Route::get('/customer-savings','SavingsController@index')->name('savings');
@@ -50,6 +46,12 @@ Route::namespace('Admin')->prefix('admin')->name('admin.')->group(function(){
         Route::get('/customer-savings/edit/{customer}','SavingsController@show')->name('edit');
         Route::post('/customer-savings/edit/{customer}','SavingsController@update')->name('edit.store');
         Route::post('/customer-savings/delete','SavingsController@destroy')->name('savings.delete');
+        // Application
+        Route::get('/customer-savings/application/{user}','SavingsController@applicationForm')->name('savings.apply');
+        Route::post('/customer-savings/application/{user}','SavingsController@storeApplication')->name('savings.apply.store');
+        // Pay Credits from Savings
+        Route::get('/customer-savings/pay-credits/{user}','SavingsController@transactionFromCredits')->name('savings.credits.pay');
+        Route::post('/customer-savings/pay-credits/{user}','SavingsController@storeTransactionFromCredits')->name('savings.credits.store');
         // Transactions
         Route::get('/customer-transaction-savings/deposit/{user}','SavingsController@savingsTransactionDeposit')->name('transaction.deposit');
         Route::post('/customer-transaction-savings/store/{user}','SavingsController@storeSavingsTransactions')->name('transaction.deposit.store');
@@ -62,6 +64,9 @@ Route::namespace('Admin')->prefix('admin')->name('admin.')->group(function(){
         Route::get('/customer-credits/edit/{customer}','CreditsController@show')->name('credits.edit');
         Route::post('/customer-credits/edit/{customer}','CreditsController@update')->name('credits.edit.store');
         Route::post('/customer-credits/delete','CreditsController@destroy')->name('credits.delete');
+        // Application
+        Route::get('/customer-credits/application/{user}','CreditsController@applicationForm')->name('credits.apply');
+        Route::post('/customer-credits/application/{user}','CreditsController@storeApplication')->name('credits.apply.store');
         // Transactions
         Route::get('/customer-transaction-credits/add/{user}','CreditsController@creditsTransactionAdd')->name('transaction.credits.add');
         Route::get('/customer-transaction-credits/pay/{user}','CreditsController@creditsTransactionPay')->name('transaction.credits.pay');

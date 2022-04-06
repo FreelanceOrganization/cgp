@@ -1,6 +1,11 @@
 <?php
 
 return [
+    'title' => [
+        'savings' => "Savings",
+        'credits' => "Credits",
+    ],
+
     'purpose' => [
         'savings' => 1,
         'credits' => 0,

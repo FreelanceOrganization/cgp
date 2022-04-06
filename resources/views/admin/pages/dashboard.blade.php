@@ -1,6 +1,13 @@
 @extends('layouts.admin.main')
 @section('title','Dashboard')
 @section('main-content')
+@push('javascript')
+    <script>
+        window.savings = JSON.parse('{!! $annualSavings !!}');
+        window.credits = JSON.parse('{!! $annualCredits !!}');
+        window.chartData = JSON.parse('{!! $trafficChartData !!}');
+    </script>
+@endpush
 <div class="content-wrapper">
     <div class="page-header">
         <h3 class="page-title">
@@ -23,8 +30,7 @@
             <img src="{{ asset('admin/assets/images/dashboard/circle.svg') }}" class="card-img-absolute" alt="circle-image" />
             <h4 class="font-weight-normal mb-3">Monthly Savings <i class="mdi mdi-chart-line mdi-24px float-right"></i>
             </h4>
-            <h2 class="mb-5">₱ 15,000</h2>
-            <h6 class="card-text">Increased by 60%</h6>
+            <h2 class="mb-5">₱ {{ number_format($monthlySavings) }}</h2>
         </div>
         </div>
     </div>
@@ -34,8 +40,7 @@
             <img src="{{ asset('admin/assets/images/dashboard/circle.svg') }}" class="card-img-absolute" alt="circle-image" />
             <h4 class="font-weight-normal mb-3">Monthly Credits <i class="mdi mdi-bookmark-outline mdi-24px float-right"></i>
             </h4>
-            <h2 class="mb-5">₱ 45,633</h2>
-            <h6 class="card-text">Decreased by 10%</h6>
+            <h2 class="mb-5">₱ {{ number_format($monthlyCredits) }}</h2>
         </div>
         </div>
     </div>
@@ -43,10 +48,9 @@
         <div class="card bg-gradient-success card-img-holder text-white">
         <div class="card-body">
             <img src="{{ asset('admin/assets/images/dashboard/circle.svg') }}" class="card-img-absolute" alt="circle-image" />
-            <h4 class="font-weight-normal mb-3">Total Customers <i class="mdi mdi-diamond mdi-24px float-right"></i>
+            <h4 class="font-weight-normal mb-3">Total Customers <i class="mdi mdi-account-multiple mdi-24px float-right"></i>
             </h4>
-            <h2 class="mb-5">95,574</h2>
-            <h6 class="card-text">Increased by 5%</h6>
+            <h2 class="mb-5">{{ number_format($totalCustomers) }}</h2>
         </div>
         </div>
     </div>
