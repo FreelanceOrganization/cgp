@@ -33,6 +33,10 @@ Route::get('/pay-credit',function(){
     return view('user.pay-credit');
 });
 
+Route::get('/about', function() {
+    return view('user.about');
+});
+
 Route::namespace('Admin')->prefix('admin')->name('admin.')->group(function(){
     Route::get('/dashboard',function(){
         return view('admin.pages.dashboard');
