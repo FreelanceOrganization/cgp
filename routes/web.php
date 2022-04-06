@@ -33,6 +33,10 @@ Route::get('/pay-credit',function(){
     return view('user.pay-credit');
 });
 
+Route::get('/about', function() {
+    return view('user.about');
+});
+
 Route::namespace('Admin')->prefix('admin')->name('admin.')->group(function(){
     Route::get('/dashboard',function(){
         return view('admin.pages.dashboard');
@@ -60,7 +64,6 @@ Route::namespace('Admin')->prefix('admin')->name('admin.')->group(function(){
     Route::get('/customer-transaction-add',function(){
         return view('admin.pages.transactions.form');
     })->name('customer.transaction.form');
-
 
     Route::get('/manage-account',function(){
         return view('admin.pages.account');
