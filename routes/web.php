@@ -50,6 +50,10 @@ Route::namespace('Admin')->prefix('admin')->name('admin.')->group(function(){
         Route::get('/customer-savings/edit/{customer}','SavingsController@show')->name('edit');
         Route::post('/customer-savings/edit/{customer}','SavingsController@update')->name('edit.store');
         Route::post('/customer-savings/delete','SavingsController@destroy')->name('savings.delete');
+        // Transactions
+        Route::get('/customer-transaction-savings/deposit/{user}','SavingsController@savingsTransactionDeposit')->name('transaction.deposit');
+        Route::post('/customer-transaction-savings/store/{user}','SavingsController@storeSavingsTransactions')->name('transaction.deposit.store');
+        Route::get('/customer-transaction-savings/withdraw/{user}','SavingsController@savingsTransactionWithdraw')->name('transaction.withdraw');
 
         // Credits
         Route::get('/customer-credits','CreditsController@index')->name('credits');
@@ -58,22 +62,21 @@ Route::namespace('Admin')->prefix('admin')->name('admin.')->group(function(){
         Route::get('/customer-credits/edit/{customer}','CreditsController@show')->name('credits.edit');
         Route::post('/customer-credits/edit/{customer}','CreditsController@update')->name('credits.edit.store');
         Route::post('/customer-credits/delete','CreditsController@destroy')->name('credits.delete');
+        // Transactions
+        Route::get('/customer-transaction-credits/add/{user}','CreditsController@creditsTransactionAdd')->name('transaction.credits.add');
+        Route::get('/customer-transaction-credits/pay/{user}','CreditsController@creditsTransactionPay')->name('transaction.credits.pay');
+        Route::post('/customer-transaction-credits/store/{user}','CreditsController@storeCreditsTransactions')->name('transaction.credits.store');
     });
-
-
-    Route::get('/customer-transaction-add',function(){
-        return view('admin.pages.transactions.form');
-    })->name('customer.transaction.form');
 
     Route::get('/manage-account',function(){
         return view('admin.pages.account');
     })->name('manage');
 
-    Route::get('/transactions-history-savings',function(){
-        return view('admin.pages.history.savings.list');
-    })->name('transactions.savings');
+    Route::name('transactions.')->group(function(){
+        Route::get('/transactions-history-savings','SavingsController@savingsHistory')->name('savings');
+        Route::get('/transactions-history-savings/{user}','SavingsController@userSavingsHistory')->name('user.savings');
+        Route::get('/transactions-history-credits','CreditsController@creditsHistory')->name('credits');
+        Route::get('/transactions-history-credits/{user}','CreditsController@userCreditsHistory')->name('user.credits');
+    });
 
-    Route::get('/transactions-history-credits',function(){
-        return view('admin.pages.history.credits.list');
-    })->name('transactions.credits');
 });
