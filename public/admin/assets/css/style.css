@@ -14462,3 +14462,8 @@ dl {
 input[type='text']{
     text-transform:capitalize;
 }
+
+.dropdown .dropdown-menu .dropdown-item:hover {
+    background-color: #f8f9fa;
+    color: #389ae8 !important;
+}

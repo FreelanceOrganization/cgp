@@ -59,7 +59,7 @@
                                 <tr data-url={{ route('admin.transactions.user.credits',['user'=>$user->id])}}
                                 data-toggle="tooltip" class="data" data-placement="top" title="View Transactions History" style="cursor: pointer">
                                     <td class="capitalize">
-                                    <img src="{{ asset('admin/assets/images/faces/face1.jpg') }}" class="me-2" alt="image"> {{ $user->firstname }} {{ $user->lastname }}
+                                         {{ $user->firstname }} {{ $user->lastname }}
                                     </td>
                                     <td>
                                         ₱ {{ number_format($user->purpose->first()->available_balance, 2, '.', ',')  }}

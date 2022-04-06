@@ -13,13 +13,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('auth.login');
-});
+Route::get('/', 'AuthController@form')->name('login');
+Route::post('/', 'AuthController@login')->name('login.send');
+
 
 Route::get('/user',function(){
     return view('user.balance');
-});
+})->name('customer');
 
 Route::get('/credit',function(){
     return view('user.credit');
@@ -33,11 +33,11 @@ Route::get('/pay-credit',function(){
     return view('user.pay-credit');
 });
 
-Route::namespace('Admin')->prefix('admin')->name('admin.')->group(function(){
-    Route::get('/dashboard',function(){
-        return view('admin.pages.dashboard');
-    })->name('dashboard');
+Route::any('/logout','AuthController@logout')->name('logout');
 
+
+Route::middleware(['auth'])->namespace('Admin')->prefix('admin')->name('admin.')->group(function(){
+    Route::get('/dashboard','DashboardController@index')->name('dashboard');
     Route::name('customer.')->group(function(){
         // Savings
         Route::get('/customer-savings','SavingsController@index')->name('savings');

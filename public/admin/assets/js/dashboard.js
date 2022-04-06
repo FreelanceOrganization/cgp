@@ -70,7 +70,7 @@
       var myChart = new Chart(ctx, {
         type: 'bar',
         data: {
-            labels: ['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG'],
+            labels: ['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEP', 'OCT', 'NOV', 'DEC'],
             datasets: [
               {
                 label: "SAVINGS",
@@ -82,7 +82,7 @@
                 fill: false,
                 borderWidth: 1,
                 fill: 'origin',
-                data: [20, 40, 15, 35, 25, 50, 30, 20]
+                data: [0, 0, 1500, 500, 0, 0, 0, 0, 0, 0, 0, 0]
               },
               {
                 label: "CREDITS",
@@ -94,7 +94,7 @@
                 fill: false,
                 borderWidth: 1,
                 fill: 'origin',
-                data: [40, 30, 20, 10, 50, 15, 35, 40]
+                data: credits
               },
           ]
         },
@@ -176,7 +176,7 @@
 
       var trafficChartData = {
         datasets: [{
-          data: [70, 30],
+          data: chartData,
           backgroundColor: [
             gradientStrokeBlue,
             gradientStrokeGreen,

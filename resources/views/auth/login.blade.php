@@ -9,9 +9,10 @@
     </div>
 
     <div class="container-sm">
-        <form action="">
-            <input type="text" class="inputField" id="username" placeholder="Username">
-            <input type="password" class="inputField" id="password" placeholder="Password">
+        <form action="{{ route('login.send') }}" method="post">
+            @csrf
+            <input type="text" class="inputField" id="username" placeholder="Username" name="email">
+            <input type="password" class="inputField" id="password" placeholder="Password" name="password">
             <button type="submit" class="btn">LOG IN</button>
             <div class="info">
                 <a href="#" class="frgtPswd">Forgot Password?</a>

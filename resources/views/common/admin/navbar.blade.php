@@ -22,20 +22,16 @@
         </li>
         <li class="nav-item nav-profile dropdown">
             <a class="nav-link dropdown-toggle" id="profileDropdown" href="#" data-bs-toggle="dropdown" aria-expanded="false">
-              <div class="nav-profile-img">
-                <img src="{{ asset('admin/assets/images/faces/face1.jpg') }}" alt="image">
-                <span class="availability-status online"></span>
-              </div>
               <div class="nav-profile-text">
-                <p class="mb-1 text-black">David Greymaax</p>
+                <p class="mb-1 text-black capitalize">{{ $user->firstname }} {{ $user->lastname }}</p>
               </div>
             </a>
             <div class="dropdown-menu navbar-dropdown" aria-labelledby="profileDropdown">
               <a class="dropdown-item" href="{{ route('admin.manage') }}">
                 <i class="mdi mdi-settings me-2 text-success"></i> Manage Account </a>
               <div class="dropdown-divider"></div>
-              <a class="dropdown-item" href="#">
-                <i class="mdi mdi-logout me-2 text-primary"></i> Signout </a>
+              <a class="dropdown-item" href="{{ route('logout') }}">
+                <i class="mdi mdi-logout me-2 text-primary "></i> Signout </a>
             </div>
           </li>
       </ul>

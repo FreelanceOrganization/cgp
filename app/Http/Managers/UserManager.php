@@ -45,6 +45,20 @@ class UserManager
         return $users;
     }
 
+    public function countCustomers()
+    {
+        $customers = User::where('role',config('const.user.customer'))->count();
+        return $customers;
+    }
+
+    public function customerPurposes($type)
+    {
+        return [User::where('role',config('const.user.customer'))->with(['purpose' => function($q) use ($type) {
+            $q->where('type',$type);
+        }])->count()];
+
+    }
+
     public function updateUser($data, $customer)
     {
         $update = $customer->update($data);
