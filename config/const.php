@@ -12,8 +12,8 @@ return [
     ],
 
     'user' => [
-        'admin' => 1,
-        'customer' => 0,
+        'admin' => true,
+        'customer' => false,
     ],
 
     'transactions' => [
@@ -21,6 +21,7 @@ return [
         'withdraw' => "Withdraw",
         'pay_debts' => "Paid Credits",
         'add_debts' => "Add Credits",
+        'pay_debts_from_savings' => "Pay Credits From Savings"
     ],
 ];
 

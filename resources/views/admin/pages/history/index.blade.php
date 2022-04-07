@@ -28,7 +28,7 @@
                     </form>
                 </div>
                 <div class="table-responsive">
-                <table class="table">
+                <table class="table table-striped">
                     <thead>
                     <tr>
                         <th> Customer </th>
@@ -65,7 +65,7 @@
                                 </td>
                                 <td> {{ $transaction->created_at->format('l jS \of F Y') }} </td>
                                 <td>
-                                    {{ $transaction->created_at->format('h:i:s A') }}
+                                    {{ $transaction->created_at->setTimezone('Singapore')->format('h:i:s A') }}
                                 </td>
                             </tr>
                         @endforeach

@@ -133,17 +133,12 @@ class SavingsController extends Controller
     {
         $data = $request->all();
         $data['transaction_type'] = $data['label'];
-        $balance = $user->purpose->first()->available_balance;
+        $balance = $this->userManager->getBalance($user, config('const.purpose.savings'));
         if($data['amount'] > $balance && $data['label'] != "Deposit"){
             return redirect()->back()->with('error','You inputed a greater amount than your balance');
         }
-        $balance = $data['label'] == "Deposit" ? $balance + floatval($data['amount']) : $balance - floatval($data['amount']);
-        $data['available_balance'] = $balance;
-        $user->purpose()->update([
-            'amount' => $request->amount,
-            'available_balance' => $balance
-        ]);
-        $user->purpose->first()->transactions()->create($data);
+        $data['available_balance'] = $data['label'] == "Deposit" ? $balance + floatval($data['amount']) : $balance - floatval($data['amount']);
+        $this->createTransaction($data, $user, config('const.purpose.savings'));
         return redirect()->route('admin.customer.savings')->with('success',$data['label']." Successfully");
     }
 
@@ -173,7 +168,29 @@ class SavingsController extends Controller
 
     public function storeTransactionFromCredits(TransactionRequest $request, User $user)
     {
-        dd($request, $user);
+        $data = $request->all();
+        $savings = $this->userManager->getBalance($user, config('const.purpose.savings'));
+        $credits = $this->userManager->getBalance($user, config('const.purpose.credits'));
+        if($data['amount'] > $credits || $data['amount'] > $savings){
+            return redirect()->back()->with('error','You inputed a greater amount than your balance');
+        }
+        $data['available_balance'] =  $credits - floatval($data['amount']);
+        $data['transaction_type'] = config('const.transactions.pay_debts_from_savings');
+        $this->createTransaction($data, $user, config('const.purpose.credits'));
+        $data['available_balance'] =  $savings - floatval($data['amount']);
+        $this->createTransaction($data, $user, config('const.purpose.savings'));
+
+        return redirect()->route('admin.customer.credits')->with('success','Successfully pay credits from savings');
+    }
+
+
+    public function createTransaction($data, $user, $type)
+    {
+        $user->purpose->where('type',$type)->first()->update([
+            'amount' => $data['amount'],
+            'available_balance' => $data['available_balance']
+        ]);
+        $user->purpose->where('type',$type)->first()->transactions()->create($data);
     }
 
 }

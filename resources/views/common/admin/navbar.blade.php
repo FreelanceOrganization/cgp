@@ -28,7 +28,7 @@
             </a>
             <div class="dropdown-menu navbar-dropdown" aria-labelledby="profileDropdown">
               <a class="dropdown-item" href="{{ route('admin.manage') }}">
-                <i class="mdi mdi-settings me-2 text-success"></i> Manage Account </a>
+                <i class="mdi mdi-settings me-2 text-success"></i> Change Password </a>
               <div class="dropdown-divider"></div>
               <a class="dropdown-item" href="{{ route('logout') }}">
                 <i class="mdi mdi-logout me-2 text-primary "></i> Signout </a>
