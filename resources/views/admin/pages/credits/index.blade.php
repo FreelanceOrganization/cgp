@@ -65,9 +65,9 @@
                                         ₱ {{ number_format($user->purpose->first()->available_balance, 2, '.', ',')  }}
                                     </td>
                                     <td>
-                                        {{ $user->created_at->toDayDateTimeString() }}
+                                        {{ $user->created_at->setTimezone('Singapore')->toDayDateTimeString() }}
                                     </td>
-                                    <td> {{ $user->purpose->first()->updated_at->toDayDateTimeString() }} </td>
+                                    <td> {{ $user->purpose->first()->updated_at->setTimezone('Singapore')->toDayDateTimeString() }} </td>
                                     <td>
                                         <a href="{{ route('admin.customer.transaction.credits.add',['user' => $user->id]) }}" class="btn btn-outline-success " data-toggle="tooltip" data-placement="top" title="Deposit"><i class="mdi mdi-database-plus"></i></a>
                                         <a href="{{ route('admin.customer.transaction.credits.pay',['user' => $user->id]) }}" class="btn btn-outline-danger" data-toggle="tooltip" data-placement="top" title="Withdraw"><i class="mdi mdi-database-minus"></i></a>

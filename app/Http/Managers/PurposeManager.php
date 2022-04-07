@@ -26,7 +26,7 @@ class PurposeManager {
             }
             array_push($final, $result[$month]);
         }
-        // dd($final);
+
         return json_encode($final);
     }
 

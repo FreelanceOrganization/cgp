@@ -11,6 +11,13 @@ class AuthController extends Controller
 {
     public function form()
     {
+        $user = Auth::user();
+        if($user && $user->role == config('const.user.admin')){
+            return redirect()->route('admin.dashboard');
+        }
+        if($user && $user->role == config('const.user.customer')){
+            return redirect()->route('customer');
+        }
         return view('auth.login');
     }
 

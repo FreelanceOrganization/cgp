@@ -35,7 +35,6 @@ Route::get('/pay-credit',function(){
 
 Route::any('/logout','AuthController@logout')->name('logout');
 
-
 Route::middleware(['auth'])->namespace('Admin')->prefix('admin')->name('admin.')->group(function(){
     Route::get('/dashboard','DashboardController@index')->name('dashboard');
     Route::name('customer.')->group(function(){
@@ -73,10 +72,6 @@ Route::middleware(['auth'])->namespace('Admin')->prefix('admin')->name('admin.')
         Route::post('/customer-transaction-credits/store/{user}','CreditsController@storeCreditsTransactions')->name('transaction.credits.store');
     });
 
-    Route::get('/manage-account',function(){
-        return view('admin.pages.account');
-    })->name('manage');
-
     Route::name('transactions.')->group(function(){
         Route::get('/transactions-history-savings','SavingsController@savingsHistory')->name('savings');
         Route::get('/transactions-history-savings/{user}','SavingsController@userSavingsHistory')->name('user.savings');
@@ -85,3 +80,6 @@ Route::middleware(['auth'])->namespace('Admin')->prefix('admin')->name('admin.')
     });
 
 });
+
+Route::get('/admin/manage-account','UserController@adminConfig')->name('admin.manage')->middleware('auth');
+Route::post('/admin/manage-account','UserController@changePassword')->name('admin.change.password')->middleware('auth');

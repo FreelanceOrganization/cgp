@@ -59,6 +59,11 @@ class UserManager
 
     }
 
+    public function getBalance($user, $type)
+    {
+       return $user->purpose->where('type',$type)->first()->available_balance;
+    }
+
     public function updateUser($data, $customer)
     {
         $update = $customer->update($data);
