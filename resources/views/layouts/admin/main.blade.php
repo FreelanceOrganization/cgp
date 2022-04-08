@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="{{ asset('admin/assets/vendors/css/vendor.bundle.base.css') }}">
     <!-- endinject -->
     <!-- Plugin css for this page -->
+    <link rel="manifest" href="{{ asset('manifest.json') }}">
     <!-- End plugin css for this page -->
     <!-- inject:css -->
     <!-- endinject -->
