@@ -21,7 +21,7 @@
                 <div class="col-3" id="profile-cont">
                     <div id="profile-and-name">
                         <div style="height: 53%;">
-                            <p class="name">John Doe</p>
+                            <p class="name">{{ $user->firstname }} {{ $user->lastname }}</p>
                         </div>
                         <div class="profile"></div>
                     </div>
@@ -49,9 +49,9 @@
                 <img id="sub-header-profile-img" src="{{ asset('img/logo.jpg') }}" alt="">
             </div>
             <div id="sub-header-profile-text-cont">
-                <p id="sub-header-profile-text">JOHN DOE</p>
+                <p id="sub-header-profile-text">{{ $user->firstname }} {{ $user->lastname }}</p>
             </div>
-            <span id="sub-header-profile-text-sm">01000023422</span>
+            <span id="sub-header-profile-text-sm">{{ $user->id }}</span>
         </div>
         {{-- sidebar-navigation --}}
         <div id="sidebar-nav-cont">

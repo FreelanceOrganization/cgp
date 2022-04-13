@@ -17,17 +17,11 @@ Route::get('/', 'AuthController@form')->name('login');
 Route::post('/', 'AuthController@login')->name('login.send');
 
 
-Route::get('/user',function(){
-    return view('user.balance');
-})->name('customer');
+Route::get('/user','UserController@customerBalance')->name('customer');
 
-Route::get('/credit',function(){
-    return view('user.credit');
-});
+Route::get('/credit','UserController@customerCredits')->name('credits');
 
-Route::get('/view-details',function(){
-    return view('user.view-details');
-});
+Route::get('/view-details/{transaction}','UserController@TransactionDetails')->name('details');
 
 Route::get('/pay-credit',function(){
     return view('user.pay-credit');

@@ -91,3 +91,8 @@ span{
     height: 100%;
     margin-top: 18px;
 }
+
+.text-center a{
+    text-decoration: none;
+    color: #ffff;
+}

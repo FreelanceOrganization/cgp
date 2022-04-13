@@ -8,16 +8,20 @@
         <div class="container">
             <div class="row">
                 <div class="col text-center balance">
-                    Balance
+                    <a href="{{ route('customer') }}">
+                        Balance
+                    </a>
                 </div>
                 <div class="col text-center">
-                    Credit
+                    <a href="{{ route('credits') }}">
+                        Credit
+                    </a>
                 </div>
             </div>
         </div>
 
         <p class="text-balance">Available Balance</p>
-         <h2> <span>PhP</span> 100.50</h2>
+         <h2> <span>PhP</span> {{ number_format($balance) }}</h2>
     </div>
     <div class="transaction">
         <div class="container">
@@ -34,101 +38,36 @@
         </div>
     </div>
 <div class="history">
-    <div class="first-row trans-cont">
-        <div class="format-text">
-            <h5 class="add">₱ +500.00</h5>
-        </div>
-        <div class="format-text">
-           <p class="right"> April 06 <br> <small><a href="#" class="details">View Details</a></small></p>
-        </div>
-    </div>
-    <div class="second-row trans-cont">
-        <div class="format-text">
-            <h5 class="minus">₱ -200.00</h5>
-        </div>
-        <div class="format-text">
-           <p class="right"> April 06 <br> <span><a href="#" class="details">View Details</a></span></p>
-        </div>
-    </div>
-    <div class="first-row trans-cont">
-        <div class="format-text">
-            <h5 class="add">₱ +500.00</h5>
-        </div>
-        <div class="format-text">
-           <p class="right"> April 06 <br> <span><a href="#" class="details">View Details</a></span></p>
-        </div>
-    </div>
-    <div class="second-row trans-cont">
-        <div class="format-text">
-            <h5 class="minus">₱ -200.00</h5>
-        </div>
-        <div class="format-text">
-           <p class="right"> April 06 <br> <span><a href="#" class="details">View Details</a></span></p>
-        </div>
-    </div>
-    <div class="first-row trans-cont">
-        <div class="format-text">
-            <h5 class="add">₱ +500.00</h5>
-        </div>
-        <div class="format-text">
-           <p class="right"> April 06 <br> <span><a href="#" class="details">View Details</a></span></p>
-        </div>
-    </div>
-    <div class="second-row trans-cont">
-        <div class="format-text">
-            <h5 class="minus">₱ -200.00</h5>
-        </div>
-        <div class="format-text">
-           <p class="right"> April 06 <br> <span><a href="#" class="details">View Details</a></span></p>
-        </div>
-    </div>
-    <div class="first-row trans-cont">
-        <div class="format-text">
-            <h5 class="add">₱ +500.00</h5>
-        </div>
-        <div class="format-text">
-           <p class="right"> April 06 <br> <span><a href="#" class="details">View Details</a></span></p>
-        </div>
-    </div>
-    <div class="second-row trans-cont">
-        <div class="format-text">
-            <h5 class="minus">₱ -200.00</h5>
-        </div>
-        <div class="format-text">
-           <p class="right"> April 06 <br> <span><a href="#" class="details">View Details</a></span></p>
-        </div>
-    </div>
-    <div class="first-row trans-cont">
-        <div class="format-text">
-            <h5 class="add">₱ +500.00</h5>
-        </div>
-        <div class="format-text">
-           <p class="right"> April 06 <br> <span><a href="#" class="details">View Details</a></span></p>
-        </div>
-    </div>
-    <div class="second-row trans-cont">
-        <div class="format-text">
-            <h5 class="minus">₱ -200.00</h5>
-        </div>
-        <div class="format-text">
-           <p class="right"> April 06 <br> <span><a href="#" class="details">View Details</a></span></p>
-        </div>
-    </div>
-    <div class="first-row trans-cont">
-        <div class="format-text">
-            <h5 class="add">₱ +500.00</h5>
-        </div>
-        <div class="format-text">
-           <p class="right"> April 06 <br> <span><a href="#" class="details">View Details</a></span></p>
-        </div>
-    </div>
-    <div class="second-row trans-cont">
-        <div class="format-text">
-            <h5 class="minus">₱ -200.00</h5>
-        </div>
-        <div class="format-text">
-           <p class="right"> April 06 <br> <span><a href="#" class="details">View Details</a></span></p>
-        </div>
-    </div>
+    @if($transactions != null)
+        @foreach ($transactions as $history)
+            @if($loop->index+1 % 2 == 0)
+            <div class="second-row trans-cont">
+                <div class="format-text">
+                    @if ($history->transaction_type == "Deposit")
+                        <h5 class="add">₱ +{{ number_format($history->available_balance) }}</h5>
+                    @else
+                        <h5 class="minus">₱ -{{ number_format($history->available_balance) }}</h5>
+                    @endif
+                </div>
+                <div class="format-text">
+                <p class="right"> {{$history->created_at->format('F d')}}<br> <span><a href="{{ route('details',['transaction' => $history->id]) }}" class="details">View Details</a></span></p>
+                </div>
+            </div>
+            @else
+            <div class="first-row trans-cont">
+                <div class="format-text">
+                    @if ($history->transaction_type == "Deposit")
+                        <h5 class="add">₱ +{{ number_format($history->available_balance) }}</h5>
+                    @else
+                        <h5 class="minus">₱ -{{ number_format($history->available_balance) }}</h5>
+                    @endif
+                </div>
+                <div class="format-text">
+                <p class="right"> {{$history->created_at->format('F d')}}<br> <small><a href="{{ route('details',['transaction' => $history->id]) }}" class="details">View Details</a></small></p>
+                </div>
+            </div>
+            @endif
+        @endforeach
+    @endif
 </div>
 @endsection

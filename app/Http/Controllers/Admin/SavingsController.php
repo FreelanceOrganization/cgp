@@ -133,12 +133,12 @@ class SavingsController extends Controller
     {
         $data = $request->all();
         $data['transaction_type'] = $data['label'];
-        $balance = $this->userManager->getBalance($user, config('const.purpose.savings'));
+        $balance = $this->userManager->getBalance($user, $this->savings);
         if($data['amount'] > $balance && $data['label'] != "Deposit"){
             return redirect()->back()->with('error','You inputed a greater amount than your balance');
         }
         $data['available_balance'] = $data['label'] == "Deposit" ? $balance + floatval($data['amount']) : $balance - floatval($data['amount']);
-        $this->createTransaction($data, $user, config('const.purpose.savings'));
+        $this->createTransaction($data, $user, $this->savings);
         return redirect()->route('admin.customer.savings')->with('success',$data['label']." Successfully");
     }
 
@@ -152,7 +152,7 @@ class SavingsController extends Controller
     public function storeApplication(TransactionRequest $request, User $user)
     {
         $data = $request->all();
-        $data['type'] = config('const.purpose.savings');
+        $data['type'] = $this->savings;
         $data['available_balance'] = $data['amount'];
         $data['transaction_type'] = config('const.transactions.deposit');
         $this->userManager->savePurpose($user, $data);
@@ -169,7 +169,7 @@ class SavingsController extends Controller
     public function storeTransactionFromCredits(TransactionRequest $request, User $user)
     {
         $data = $request->all();
-        $savings = $this->userManager->getBalance($user, config('const.purpose.savings'));
+        $savings = $this->userManager->getBalance($user, $this->savings);
         $credits = $this->userManager->getBalance($user, config('const.purpose.credits'));
         if($data['amount'] > $credits || $data['amount'] > $savings){
             return redirect()->back()->with('error','You inputed a greater amount than your balance');
@@ -178,7 +178,7 @@ class SavingsController extends Controller
         $data['transaction_type'] = config('const.transactions.pay_debts_from_savings');
         $this->createTransaction($data, $user, config('const.purpose.credits'));
         $data['available_balance'] =  $savings - floatval($data['amount']);
-        $this->createTransaction($data, $user, config('const.purpose.savings'));
+        $this->createTransaction($data, $user, $this->savings);
 
         return redirect()->route('admin.customer.credits')->with('success','Successfully pay credits from savings');
     }
