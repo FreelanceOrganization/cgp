@@ -1,54 +1,69 @@
+.image{
+    width: 100%;
+    text-align: center;
+    padding-top: 4rem;
+}
+.image .logo-image{
+    width: 25%;
+}
+.container-sm{
+    width: 50%;
+    text-align: center;
+    padding-top: 2rem;
+    box-shadow: 2px 6px 10px dimgrey;
+    padding: 11px;
+    border-radius: 10px;
+}
+.btn{
+    width: 100%;
+    background-color: #0149AB;
+    color: #ffff;
+    margin-top: 60px;
+    font-size: 13px;
+    padding: 10px ;
+}
+::placeholder{
+    color: dimgray;
+    text-align: center;
+}
+.inputField{
+    border: none;
+    border-bottom: 1px solid #635D5D;
+    border-radius: 0px;
+    padding-top: 20px;
+    width: 100%;
+    text-align: center;
+}
+a{
+    text-decoration: none;
+}
+.frgtPswd{
+    color: black;
+}
+.info{
+    text-align: center;
+    margin-top: 27px;
+    font-size: 12px;
+    margin-bottom: 27px;
+}
+.text{
+    padding: 10px;
+    margin-bottom: 0rem;
+}
+input:focus {
+    outline: none;
+}
+
 @media (max-width: 425px) {
     .logo-image{
-        width: 55%;
-        padding: 30px 10px;
+        width: 55% !important;
+        padding: 30px 10px !important;
     }
     .image{
-        text-align: center;
+        text-align: center !important;
+    }
+    .container-sm{
+        width: 100% !important;
     }
 
-    .container-sm{
-        border-radius: 10px;
-        box-shadow: 2px 6px 10px dimgrey;
-        padding: 11px;
-    }
-    .btn{
-        width: 100%;
-        background-color: #0149AB !important;
-        color: #ffff !important;
-        margin-top: 60px;
-        font-size: 13px !important;
-        padding: 10px !important;
-    }
-    ::placeholder{
-        color: dimgray;
-        text-align: center;
-    }
-    .inputField{
-        border: none;
-        border-bottom: 1px solid #635D5D;
-        border-radius: 0px;
-        padding-top: 20px;
-        width: 100%;
-        text-align: center;
-    }
-    a{
-        text-decoration: none !important;
-    }
-    .frgtPswd{
-        color: black !important;
-    }
-    .info{
-        text-align: center;
-        margin-top: 27px;
-        font-size: 12px;
-        margin-bottom: 27px;
-    }
-    .text{
-        padding: 10px;
-        margin-bottom: 0rem !important;
-    }
-    input:focus {
-        outline: none !important;
-    }
 }
