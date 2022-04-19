@@ -67,4 +67,18 @@ class UserController extends Controller
         return view('user.view-details',compact('user','transaction'));
     }
 
+    public function payCreditForm()
+    {
+        $user = Auth::user();
+        $balance = $this->getBalance(config('const.purpose.savings'),$user);
+        $credits = $this->getBalance(config('const.purpose.credits'),$user);
+        return view('user.pay-credit',compact('user','balance','credits'));
+    }
+
+    public function about()
+    {
+        $user = Auth::user();
+        return view('user.about',compact('user'));
+    }
+
 }

@@ -16,16 +16,11 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', 'AuthController@form')->name('login');
 Route::post('/', 'AuthController@login')->name('login.send');
 
-
 Route::get('/user','UserController@customerBalance')->name('customer');
-
 Route::get('/credit','UserController@customerCredits')->name('credits');
-
 Route::get('/view-details/{transaction}','UserController@TransactionDetails')->name('details');
-
-Route::get('/pay-credit',function(){
-    return view('user.pay-credit');
-});
+Route::get('/pay-credit','UserController@payCreditForm')->name('pay.credit');
+Route::get('/about','UserController@about')->name('about');
 
 Route::any('/logout','AuthController@logout')->name('logout');
 

@@ -43,3 +43,7 @@
     align-self: center;
     justify-content: flex-end;
 }
+.sidebar-nav-item a{
+    text-decoration: none;
+    color: black;
+}

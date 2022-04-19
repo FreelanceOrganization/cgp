@@ -56,10 +56,28 @@
         {{-- sidebar-navigation --}}
         <div id="sidebar-nav-cont">
             <ul id="sidebar-nav-items-wrapper">
-                <li class="sidebar-nav-item">Account Balance</li>
-                <li class="sidebar-nav-item">Account Credit</li>
-                <li class="sidebar-nav-item">Pay Credit</li>
-                <li class="sidebar-nav-item">About</li>
+                <li class="sidebar-nav-item">
+                    <a href="{{ route('customer') }}">
+                        Account Balance
+                    </a>
+                </li>
+                <li class="sidebar-nav-item">
+                    <a href="{{ route('credits') }}">
+                        Account Credits
+                    </a>
+                </li>
+                @if($user->purpose->where('type',config('const.purpose.credits'))->first())
+                <li class="sidebar-nav-item">
+                    <a href="{{ route('pay.credit') }}">
+                        Pay Credit
+                    </a>
+                </li>
+                @endif
+                <li class="sidebar-nav-item">
+                    <a href="{{ route('about') }}">
+                        About
+                    </a>
+                </li>
                 <li class="sidebar-nav-item">Logout</li>
             </ul>
         </div>
