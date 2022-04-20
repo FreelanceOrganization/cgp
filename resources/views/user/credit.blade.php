@@ -43,7 +43,7 @@
             @if($loop->index+1 % 2 == 0)
             <div class="second-row trans-cont">
                 <div class="format-text">
-                    @if ($history->transaction_type == "Deposit")
+                    @if ($history->transaction_type == config('const.transactions.add_debts'))
                         <h5 class="add">₱ +{{ number_format($history->available_balance) }}</h5>
                     @else
                         <h5 class="minus">₱ -{{ number_format($history->available_balance) }}</h5>
