@@ -78,7 +78,11 @@
                         About
                     </a>
                 </li>
-                <li class="sidebar-nav-item">Logout</li>
+                <li class="sidebar-nav-item">
+                    <a href="{{ route('logout') }}">
+                        Logout
+                    </a>
+                </li>
             </ul>
         </div>
     </div>

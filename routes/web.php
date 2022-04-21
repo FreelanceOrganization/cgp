@@ -16,16 +16,19 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', 'AuthController@form')->name('login');
 Route::post('/', 'AuthController@login')->name('login.send');
 
-Route::get('/user','UserController@customerBalance')->name('customer');
-Route::get('/credit','UserController@customerCredits')->name('credits');
-Route::get('/view-details/{transaction}','UserController@TransactionDetails')->name('details');
-Route::get('/pay-credit','UserController@payCreditForm')->name('pay.credit');
-Route::post('/pay-credit','UserController@payCredit')->name('pay.credit.store');
-Route::get('/about','UserController@about')->name('about');
-
+Route::middleware('auth:sanctum')->group(function(){
+    Route::get('/user','UserController@customerBalance')->name('customer');
+    Route::get('/credit','UserController@customerCredits')->name('credits');
+    Route::get('/view-details/{transaction}','UserController@TransactionDetails')->name('details');
+    Route::get('/pay-credit','UserController@payCreditForm')->name('pay.credit');
+    Route::post('/pay-credit','UserController@payCredit')->name('pay.credit.store');
+    Route::get('/about','UserController@about')->name('about');
+    Route::get('/admin/manage-account','UserController@adminConfig')->name('admin.manage')->middleware('admin');
+    Route::post('/admin/manage-account','UserController@changePassword')->name('admin.change.password')->middleware('admin');
+});
 Route::any('/logout','AuthController@logout')->name('logout');
 
-Route::middleware(['auth'])->namespace('Admin')->prefix('admin')->name('admin.')->group(function(){
+Route::middleware(['auth:sanctum','admin'])->namespace('Admin')->prefix('admin')->name('admin.')->group(function(){
     Route::get('/dashboard','DashboardController@index')->name('dashboard');
     Route::name('customer.')->group(function(){
         // Savings
@@ -71,5 +74,3 @@ Route::middleware(['auth'])->namespace('Admin')->prefix('admin')->name('admin.')
 
 });
 
-Route::get('/admin/manage-account','UserController@adminConfig')->name('admin.manage')->middleware('auth');
-Route::post('/admin/manage-account','UserController@changePassword')->name('admin.change.password')->middleware('auth');

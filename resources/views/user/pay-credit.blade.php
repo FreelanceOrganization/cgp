@@ -6,9 +6,9 @@
 @endpush
 
 @section('content')
+@include('common.admin.pop-ups.returnMessage')
     <div class="container">
         <div class="form-form-background-wrapper" style="height: 500px">
-            @include('common.admin.pop-ups.returnMessage')
             <div class="form-form-background">
                 <form class="form-form" action="{{ route('pay.credit.store') }}" method="post">
                     @csrf
