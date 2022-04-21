@@ -7,6 +7,7 @@ use App\Http\Requests\UserRequest;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use App\Models\HistoryTransaction;
+use App\Http\Requests\Admin\TransactionRequest;
 
 class UserController extends Controller
 {
@@ -73,6 +74,24 @@ class UserController extends Controller
         $balance = $this->getBalance(config('const.purpose.savings'),$user);
         $credits = $this->getBalance(config('const.purpose.credits'),$user);
         return view('user.pay-credit',compact('user','balance','credits'));
+    }
+
+    public function payCredit(TransactionRequest $request)
+    {
+        $user = Auth::user();
+        $credit = $user->purpose->where('type',config('const.purpose.credits'))->first()->amount;
+        $data = $request->all();
+        if(floatval($data['amount']) > floatval($credit)){
+            return redirect()->back()->with('error','Inputed value is greater than your credit balance');
+        }
+        $total = floatval($credit) - floatval($data['amount']);
+        $data['available_balance'] = $total;
+        $user->purpose->where('type',config('const.purpose.credits'))->first()->update([
+            'amount' => $data['amount'],
+            'available_balance' => $total
+        ]);
+        $user->purpose->where('type',config('const.purpose.credits'))->first()->transactions()->create($data);
+        return redirect()->route('credits')->with('success','Successfully pay your credits from your savings');
     }
 
     public function about()

@@ -23,7 +23,7 @@ class Kernel extends ConsoleKernel
                 }
                 $item->update(['available_balance' => $item->available_balance*$item->interest]);
             });
-        })->monthly();
+        })->monthlyOn(8,'08:00')->timezone('Singapore');
     }
 
     /**

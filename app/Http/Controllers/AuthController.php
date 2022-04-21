@@ -31,6 +31,7 @@ class AuthController extends Controller
             }
             return redirect()->route('admin.dashboard');
         }
+        return redirect()->back()->with('error','Email or Password is Incorrect');
     }
 
     public function logout()

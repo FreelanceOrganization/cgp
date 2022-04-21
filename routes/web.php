@@ -20,6 +20,7 @@ Route::get('/user','UserController@customerBalance')->name('customer');
 Route::get('/credit','UserController@customerCredits')->name('credits');
 Route::get('/view-details/{transaction}','UserController@TransactionDetails')->name('details');
 Route::get('/pay-credit','UserController@payCreditForm')->name('pay.credit');
+Route::post('/pay-credit','UserController@payCredit')->name('pay.credit.store');
 Route::get('/about','UserController@about')->name('about');
 
 Route::any('/logout','AuthController@logout')->name('logout');
