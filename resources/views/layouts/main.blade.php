@@ -25,6 +25,7 @@
     @yield('before_end')
     <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
     <script>
+        console.log('here');
         $(window).on('load',function(){
             if(document.readyState == 'complete'){
                 $('.loader').addClass('hide');
