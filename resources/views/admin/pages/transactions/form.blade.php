@@ -27,7 +27,7 @@
           <div class="card">
             <div class="card-body">
               <h4 class="card-title text-center">Available Balance</h4>
-              <h2 class="card-description text-center"> ₱ {{ $user->purpose->first()->available_balance }} </h2>
+              <h2 class="card-description text-center"> ₱ {{ number_format($user->purpose->first()->available_balance,2,'.',',') }} </h2>
               <form class="forms-sample" action="{{ $route ? route('admin.customer.transaction.deposit.store',['user'=>$user->id]) : route('admin.customer.transaction.credits.store',['user'=>$user->id]) }}" method="post">
                 @csrf
                 <div class="form-group">

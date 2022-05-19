@@ -24,7 +24,7 @@ class TransactionRequest extends FormRequest
     public function rules()
     {
         return [
-            'amount' => 'required|integer|min:0',
+            'amount' => 'required|regex:/^\d+(\.\d{1,2})?$/',
         ];
     }
 }

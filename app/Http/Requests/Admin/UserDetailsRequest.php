@@ -41,7 +41,7 @@ class UserDetailsRequest extends FormRequest
         if($route->action['as'] == "admin.customer.savings.store" || $route->action['as'] == "admin.customer.newcredits.store"){
             $rtn['password'] = 'required';
             $rtn['email'] = 'required|email|unique:users';
-            $rtn['amount'] = 'required|integer|min:0';
+            $rtn['amount'] = 'required|regex:/^\d+(\.\d{1,2})?$/';
         }
 
         if($route->action['as'] == "admin.customer.edit.store"){

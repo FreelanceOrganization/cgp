@@ -24,9 +24,9 @@
           <div class="card">
             <div class="card-body">
               <h4 class="card-title text-center">Savings Balance</h4>
-              <h2 class="card-description text-center"> ₱ {{ $user->purpose()->where('type',config('const.purpose.savings'))->first()->available_balance }} </h2>
+              <h2 class="card-description text-center"> ₱ {{ number_format($user->purpose()->where('type',config('const.purpose.savings'))->first()->available_balance,2,'.',',') }} </h2>
               <h4 class="card-title text-center">Credits Balance</h4>
-              <h2 class="card-description text-center"> ₱ {{ $user->purpose()->where('type',config('const.purpose.credits'))->first()->available_balance }} </h2>
+              <h2 class="card-description text-center"> ₱ {{ number_format($user->purpose()->where('type',config('const.purpose.credits'))->first()->available_balance,2,'.',',') }} </h2>
               <form class="forms-sample" action="{{ route('admin.customer.savings.credits.store',['user'=>$user->id]) }}" method="post">
                 @csrf
                 <div class="form-group">
