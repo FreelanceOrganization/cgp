@@ -43,7 +43,7 @@ class UpdateInterest extends Command
             \DB::table('purposes')->where('type',config('const.purpose.savings'))->orderBy('created_at')->each(function($item, $key){
                 $date = \Carbon\Carbon::parse($item->created_at);
                 $current = \Carbon\Carbon::now();
-                $length = $date->diffInDays($current);
+                $length = $date->diffInMonths($current);
                 if($length > 8){
                     $balance = $item->available_balance;
                     $interest = $balance * 0.2;
