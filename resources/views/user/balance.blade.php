@@ -20,7 +20,7 @@
         </div>
 
         <p class="text-balance">Available Balance</p>
-         <h2> <span>PhP</span> {{ $balance }}</h2>
+         <h2> <span>PhP</span> {{ number_format($balance,2,'.',',') }}</h2>
     </div>
     <div class="transaction">
         <div class="container">
@@ -43,9 +43,9 @@
             <div class="second-row trans-cont">
                 <div class="format-text">
                     @if ($history->transaction_type == "Deposit")
-                        <h5 class="add">₱ +{{ $history->available_balance }}</h5>
+                        <h5 class="add">₱ +{{ number_format($history->available_balance,2, '.', ',') }}</h5>
                     @else
-                        <h5 class="minus">₱ -{{ $history->available_balance }}</h5>
+                        <h5 class="minus">₱ -{{ number_format($history->available_balance,2, '.', ',') }}</h5>
                     @endif
                 </div>
                 <div class="format-text">
@@ -56,9 +56,9 @@
             <div class="first-row trans-cont">
                 <div class="format-text">
                     @if ($history->transaction_type == "Deposit")
-                        <h5 class="add">₱ +{{ $history->available_balance }}</h5>
+                        <h5 class="add">₱ +{{ number_format($history->available_balance,2, '.', ',') }}</h5>
                     @else
-                        <h5 class="minus">₱ -{{ $history->available_balance }}</h5>
+                        <h5 class="minus">₱ -{{ number_format($history->available_balance,2, '.', ',') }}</h5>
                     @endif
                 </div>
                 <div class="format-text">

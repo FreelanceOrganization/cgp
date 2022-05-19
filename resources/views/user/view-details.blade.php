@@ -1,6 +1,4 @@
 @extends('layouts.main')
-@include('common.user.header')
-
 @push('css')
     <link rel="stylesheet" href="{{ asset('css/common/form.css') }}">
 @endpush
