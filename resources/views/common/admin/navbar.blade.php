@@ -13,13 +13,13 @@
             <i class="mdi mdi-fullscreen" id="fullscreen-button"></i>
           </a>
         </li>
-        <li class="nav-item dropdown">
+        {{-- <li class="nav-item dropdown">
           <a class="nav-link count-indicator dropdown-toggle" id="notificationDropdown" href="#" data-bs-toggle="dropdown">
             <i class="mdi mdi-bell-outline"></i>
             <span class="count-symbol bg-danger"></span>
           </a>
           @include('common.admin.pop-ups.notification')
-        </li>
+        </li> --}}
         <li class="nav-item nav-profile dropdown">
             <a class="nav-link dropdown-toggle" id="profileDropdown" href="#" data-bs-toggle="dropdown" aria-expanded="false">
               <div class="nav-profile-text">

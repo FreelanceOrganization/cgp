@@ -21,8 +21,9 @@
     @include('common.user.alerts.alert')
     @include('common.user.loader')
     <div class="wrapper">
-    @include('common.user.header')
-
+    @if(request()->route()->action['as'] != "login")
+        @include('common.user.header')
+    @endif
         @yield('content')
     </div>
 
@@ -30,11 +31,8 @@
     @yield('before_end')
     <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
     <script>
-        console.log('here');
         $(window).on('load',function(){
-            if(document.readyState == 'complete'){
-                $('.loader').addClass('hide');
-            }
+            $('.loader').fadeOut('slow');
         })
     </script>
     {{-- boostrap js --}}
