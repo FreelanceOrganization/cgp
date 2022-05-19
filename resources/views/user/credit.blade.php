@@ -73,7 +73,7 @@
 @push('js')
     <script>
         $(document).ready(function(){
-            $('.col').click(function(){
+            $('#plus').click(function(){
                 $('#alert-wrapper').css('display','grid');
             });
         });

@@ -18,11 +18,14 @@
     <link rel="stylesheet" href="{{ asset('admin/assets/css/style.css') }}">
     <!-- End layout styles -->
     <link rel="shortcut icon" href="{{ asset('admin/assets/images/logo.png') }}" />
+    <link rel="stylesheet" href="{{ asset('admin/assets/css/loader.css') }}">
   </head>
   <body>
     @php
         $user = Auth::user();
     @endphp
+
+    <div class="loader"><span>Loading...</span></div>
     <div class="container-scroller">
 
       <!-- views/common/admin/navbar -->
@@ -61,6 +64,12 @@
     <script src="{{ asset('admin/assets/js/dashboard.js') }}"></script>
     <script src="{{ asset('admin/assets/js/todolist.js') }}"></script>
     <script src="{{ asset('admin/assets/js/common/common.js') }}"></script>
+    <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
+    <script>
+        $(window).on('load',function(){
+            $('.loader').fadeOut('slow');
+        })
+    </script>
     <!-- End custom js for this page -->
   </body>
 </html>
