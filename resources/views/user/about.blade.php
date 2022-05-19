@@ -1,6 +1,4 @@
 @extends('layouts.main')
-@include('common.user.header')
-
 <div class="content">
     <div class="about-content">
         CGP Trading and Marketing was started and managed by Catherine Gilbuena Pascoe (CGP) in 2015 based in the Philippines.
