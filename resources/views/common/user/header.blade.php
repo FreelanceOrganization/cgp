@@ -10,6 +10,7 @@
 <header>
     <div class="header-container">
         <div class="container">
+	@if(isset($user))
             <div class="row">
                 <div class="col-9" id="burger-cont">
                     <div id="burger-inner-cont">
@@ -27,6 +28,7 @@
                     </div>
                 </div>
             </div>
+	@endif
         </div>
     </div>
 </header>
@@ -49,9 +51,9 @@
                 <img id="sub-header-profile-img" src="{{ asset('img/logo.jpg') }}" alt="">
             </div>
             <div id="sub-header-profile-text-cont">
-                <p id="sub-header-profile-text">{{ $user->firstname }} {{ $user->lastname }}</p>
+                <p id="sub-header-profile-text">{{ isset($user) ? $user->firstname : ''}} {{ isset($user) ? $user->lastname : ''}}</p>
             </div>
-            <span id="sub-header-profile-text-sm">{{ $user->id }}</span>
+            <span id="sub-header-profile-text-sm">{{ isset($user) ? $user->id : 0 }}</span>
         </div>
         {{-- sidebar-navigation --}}
         <div id="sidebar-nav-cont">
@@ -66,7 +68,7 @@
                         Account Credits
                     </a>
                 </li>
-                @if($user->purpose->where('type',config('const.purpose.credits'))->first())
+                @if(isset($user) ? $user->purpose->where('type',config('const.purpose.credits'))->first() : false)
                 <li class="sidebar-nav-item">
                     <a href="{{ route('pay.credit') }}">
                         Pay Credit

@@ -70,3 +70,13 @@
     @endif
 </div>
 @endsection
+@push('js')
+    <script src="{{ asset('js/alert.js') }}"></script>
+    <script>
+        $(document).ready(function(){
+            $('#plus').click(function(){
+                $('#alert-wrapper').css('display','grid');
+            });
+        });
+    </script>
+@endpush
