@@ -39,13 +39,13 @@
 <div class="history">
     @if($transactions != null)
         @foreach ($transactions as $history)
-            @if($loop->index+1 % 2 == 0)
+            @if($loop->index % 2 != 0)
             <div class="second-row trans-cont">
                 <div class="format-text">
                     @if ($history->transaction_type == config('const.transactions.add_debts'))
-                        <h5 class="add">₱ +{{ number_format($history->available_balance,2, '.', ',') }}</h5>
+                        <h5 class="add">₱ +{{ number_format($history->amount,2, '.', ',') }}</h5>
                     @else
-                        <h5 class="minus">₱ -{{number_format($history->available_balance,2, '.', ',') }}</h5>
+                        <h5 class="minus">₱ -{{number_format($history->amount,2, '.', ',') }}</h5>
                     @endif
                 </div>
                 <div class="format-text">
@@ -56,9 +56,9 @@
             <div class="first-row trans-cont">
                 <div class="format-text">
                     @if ($history->transaction_type == config('const.transactions.add_debts'))
-                        <h5 class="add">₱ +{{ number_format($history->available_balance,2, '.', ',') }}</h5>
+                        <h5 class="add">₱ +{{ number_format($history->amount,2, '.', ',') }}</h5>
                     @else
-                        <h5 class="minus">₱ -{{ number_format($history->available_balance,2, '.', ',') }}</h5>
+                        <h5 class="minus">₱ -{{ number_format($history->amount,2, '.', ',') }}</h5>
                     @endif
                 </div>
                 <div class="format-text">
